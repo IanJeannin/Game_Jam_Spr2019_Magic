@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -24,6 +25,14 @@ public class Player : MonoBehaviour
     {
         currentHealth -= damageAmount;
         Debug.Log(currentHealth);
+    }
+
+    private void Update()
+    {
+        if(currentHealth<=0)
+        {
+            SceneManager.LoadScene("DefeatScene");
+        }
     }
 
 }
