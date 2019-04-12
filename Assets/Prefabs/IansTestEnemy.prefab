@@ -96,6 +96,7 @@ MonoBehaviour:
   MinDistanceNeededToSeePlayer: 6
   enemySpeed: 5
   enemyStoppingDistance: 1
+  enemyDamage: 10
 --- !u!58 &5073993933412519271
 CircleCollider2D:
   m_ObjectHideFlags: 0

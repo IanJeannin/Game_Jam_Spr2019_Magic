@@ -8,12 +8,13 @@ public class IanTestEnemyMovement : MonoBehaviour
 
     [SerializeField]
     private float MinDistanceNeededToSeePlayer;
-
     [SerializeField]
     private float enemySpeed;
-
     [SerializeField]
     private float enemyStoppingDistance;
+    [SerializeField]
+    private float enemyDamage;
+
 
     //Will be false when the enemy is in the middle of an attack.
     private bool enemyCanMove = true;
@@ -62,5 +63,6 @@ public class IanTestEnemyMovement : MonoBehaviour
         yield return new WaitForSeconds(enemyAttackAnimationLength);
         enemyCanMove = true;
         Debug.Log("I ATTACK");
+        player.GetComponent<Player>().TakeDamage(enemyDamage);
     }
 }
