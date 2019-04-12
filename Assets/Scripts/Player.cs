@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     private float maxHealth;
     [SerializeField]
     private float maxCharge;
+    [SerializeField]
+    private GameObject healthBar;
 
     
     private float currentHealth;
@@ -24,6 +26,7 @@ public class Player : MonoBehaviour
     public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
+        healthBar.GetComponent<HealthBar>().SetHealth(currentHealth / 100);
         Debug.Log(currentHealth);
     }
 
