@@ -181,6 +181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   maxCharge: 100
+  resourceBar: {fileID: 0}
 --- !u!114 &1703588623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,3 +201,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   bowDamage: 20
+  chargePerAttack: 2

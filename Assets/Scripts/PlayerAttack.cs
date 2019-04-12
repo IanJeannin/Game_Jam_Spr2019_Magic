@@ -14,6 +14,8 @@ public class PlayerAttack : MonoBehaviour
     private LayerMask allEnemies;
     [SerializeField]
     private float bowDamage;
+    [SerializeField]
+    private float chargePerAttack;
 
     private float timeBetweenAttacks;
 
@@ -29,6 +31,7 @@ public class PlayerAttack : MonoBehaviour
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
                     enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(bowDamage);
+                    gameObject.GetComponent<Player>().AddEnergy(chargePerAttack);
                 }
             }
         }

@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float maxCharge;
     [SerializeField]
-    private GameObject healthBar;
+    private GameObject resourceBar;
 
     
     private float currentHealth;
@@ -21,14 +21,22 @@ public class Player : MonoBehaviour
     {
         currentHealth = maxHealth;
         currentCharge = 0;
+        resourceBar.GetComponent<ResourceBars>().SetEnergy(currentCharge);
     }
 
     public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
-        healthBar.GetComponent<HealthBar>().SetHealth(currentHealth / 100);
+        resourceBar.GetComponent<ResourceBars>().SetHealth(currentHealth / 100);
         Debug.Log(currentHealth);
     }
+
+    public void AddEnergy(float chargeAdded)
+    {
+        currentCharge += chargeAdded;
+        resourceBar.GetComponent<ResourceBars>().SetEnergy(currentCharge/100);
+    }
+
 
     private void Update()
     {
