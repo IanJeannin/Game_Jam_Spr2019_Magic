@@ -14,6 +14,10 @@ public class IanTestEnemyMovement : MonoBehaviour
     private float enemyStoppingDistance;
     [SerializeField]
     private float enemyDamage;
+    [SerializeField]
+    private float startStunnedTime;
+
+    private float stunnedTime;
 
 
     //Will be false when the enemy is in the middle of an attack.
@@ -64,5 +68,14 @@ public class IanTestEnemyMovement : MonoBehaviour
         enemyCanMove = true;
         Debug.Log("I ATTACK");
         player.GetComponent<Player>().TakeDamage(enemyDamage);
+    }
+
+    public IEnumerator StunEnemyBriefly()
+    {
+        //Stores enemies speed in another variable
+        float movementSpeed = enemySpeed;
+        enemySpeed = 0;
+        yield return new WaitForSeconds(stunnedTime);
+        enemySpeed = movementSpeed;
     }
 }
