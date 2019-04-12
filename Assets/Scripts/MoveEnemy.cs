@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MoveEnemy : MonoBehaviour
 {
-    [SerializeField]
     private GameObject player;
 
     [SerializeField]
@@ -16,20 +15,27 @@ public class MoveEnemy : MonoBehaviour
     [SerializeField]
     private float enemyStoppingDistance;
 
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
     void Update()
     {
-        if(DistanceBetweenEnemyAndPlayer() < enemyStoppingDistance)
+        if(DistanceBetweenEnemyAndPlayer() <= enemyStoppingDistance)
         {
             //Stop moving and attack
             Debug.Log("I ATTACK");
         }
         else if (DistanceBetweenEnemyAndPlayer() < MinDistanceNeededToSeePlayer)//if the enemy can see the player
         {
-            Vector3.MoveTowards(this.transform.position, player.transform.position, enemySpeed * Time.deltaTime);//move directly towards the player
+            transform.Translate(Vector3.MoveTowards(this.transform.position, player.transform.position, enemySpeed * Time.deltaTime));//move directly towards the player
+            Debug.Log("I SEE YOU");
         }
         else//default
         {
             transform.Translate(Vector3.left * enemySpeed * Time.deltaTime);//move left
+            Debug.Log("I MOVE LEFT");
         }      
     }
 

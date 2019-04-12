@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class SpawnEnemy : MonoBehaviour
 {
+    [SerializeField]
     private Transform[] spawnPoints;
 
     [SerializeField]
-    private float timeBetweenEnemies;
+    private float minTimeBetweenSpawn, maxTimeBetweenSpawn;
 
     [SerializeField]
     private GameObject enemyPrefab;
@@ -17,17 +18,25 @@ public class SpawnEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spawnPoints = GetComponentsInChildren<Transform>();
+        StartCoroutine(Spawn());
     }
 
-    private Transform GetRandomPoint()//returns a random spawn point
+    private Vector3 GetRandomPoint()//returns a random spawn point
     {
-        return spawnPoints[Random.Range(0, 3)];
+        return spawnPoints[Random.Range(0, 3)].position;
     }
 
     private IEnumerator Spawn()
     {
-        enemyInstance = Instantiate(enemyPrefab, GetRandomPoint());//spawn the enemy
-        yield return new WaitForSeconds(timeBetweenEnemies);//wait
+        for (; ; )
+        {
+            yield return new WaitForSeconds(randomTimeBetweenSpawn());//wait
+            enemyInstance = Instantiate(enemyPrefab, GetRandomPoint(), Quaternion.identity);//spawn the enemy
+        }
+    }
+
+    private float randomTimeBetweenSpawn()
+    {
+        return Random.Range(minTimeBetweenSpawn, maxTimeBetweenSpawn);
     }
 }

@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2181959297185557641}
   - component: {fileID: 6785440546471734646}
-  - component: {fileID: 5304972881345515108}
   - component: {fileID: 927345536706566762}
+  - component: {fileID: 3311546620538061340}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -69,7 +69,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 093f5c1698dce5d48b2f1efbc5ced3be, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -81,19 +81,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5304972881345515108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2692454041735637536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea3deeac4ece1b94baf75c5251385bcd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  yMaxPos: -2
 --- !u!61 &927345536706566762
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -120,3 +107,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &3311546620538061340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2692454041735637536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a782f96c74aabf45a8714adf48892c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinDistanceNeededToSeePlayer: 5
+  enemySpeed: 5
+  enemyStoppingDistance: 0.1
