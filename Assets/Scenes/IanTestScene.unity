@@ -333,81 +333,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1703588616 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1582619679334194715, guid: a8f726de74a7f894f833b8c768c8e89a,
-    type: 3}
-  m_PrefabInstance: {fileID: 6243230948883799183}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1703588617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1703588616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d045f2d770be60b4db89e6d1ab861cbe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  maxCharge: 100
---- !u!4 &1703588622 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6578079151452918061, guid: a8f726de74a7f894f833b8c768c8e89a,
-    type: 3}
-  m_PrefabInstance: {fileID: 6243230948883799183}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1703588623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1703588616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 628192ee806f791458798746b5d627e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  originalTimeBetweenAttacks: 0.5
-  attackPosition: {fileID: 1762499597}
-  attackRange: 1.24
-  allEnemies:
-    serializedVersion: 2
-    m_Bits: 512
-  bowDamage: 20
---- !u!1 &1762499596
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1762499597}
-  m_Layer: 0
-  m_Name: AttackPosition
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1762499597
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1762499596}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.7, y: 0.005, z: 0}
-  m_LocalScale: {x: 0.9227476, y: 0.5421647, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1703588622}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1918442596
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,16 +429,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1582619679334194715, guid: a8f726de74a7f894f833b8c768c8e89a,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1582619679334194715, guid: a8f726de74a7f894f833b8c768c8e89a,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6578079151452918061, guid: a8f726de74a7f894f833b8c768c8e89a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -567,26 +482,6 @@ PrefabInstance:
     - target: {fileID: 6578079151452918061, guid: a8f726de74a7f894f833b8c768c8e89a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6578079151452918061, guid: a8f726de74a7f894f833b8c768c8e89a,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.08372
-      objectReference: {fileID: 0}
-    - target: {fileID: 6578079151452918061, guid: a8f726de74a7f894f833b8c768c8e89a,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.844458
-      objectReference: {fileID: 0}
-    - target: {fileID: 8599365016802667804, guid: a8f726de74a7f894f833b8c768c8e89a,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7742147528013352466, guid: a8f726de74a7f894f833b8c768c8e89a,
-        type: 3}
-      propertyPath: yMaxPos
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
