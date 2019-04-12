@@ -35,4 +35,16 @@ public class MovePlayer : MonoBehaviour
     {
         transform.Translate(horizontalValue * speed * Time.deltaTime, verticalValue * speed * Time.deltaTime, 0);
     }
+
+    void UpdatePlayerDirection()//this is how u know which direction the player is facing.
+    {
+        if (horizontalValue > 0)
+        {
+            transform.localScale = new Vector3(1f, 1f, 1f);//facing right
+        }
+        if (horizontalValue < 0)
+        {
+            transform.localScale = new Vector3(-1f, 1f, 1f);//facing left
+        }
+    }
 }
