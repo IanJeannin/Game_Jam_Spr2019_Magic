@@ -15,6 +15,11 @@ public class IanTestEnemyMovement : MonoBehaviour
     [SerializeField]
     private float enemyStoppingDistance;
 
+    //Will be false when the enemy is in the middle of an attack.
+    private bool enemyCanMove = true;
+    //Placeholder variable to stop enemy from moving if their attack animation is playing
+    private float enemyAttackAnimationLength=1;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -22,25 +27,40 @@ public class IanTestEnemyMovement : MonoBehaviour
 
     void Update()
     {
-        if (DistanceBetweenEnemyAndPlayer() <= enemyStoppingDistance)
+        if (enemyCanMove)
         {
-            //Stop moving and attack
-            Debug.Log("I ATTACK");
-        }
-        else if (DistanceBetweenEnemyAndPlayer() < MinDistanceNeededToSeePlayer)//if the enemy can see the player
-        {
-            transform.position=Vector3.MoveTowards(this.transform.position, player.transform.position, enemySpeed * Time.deltaTime);//move directly towards the player
-            Debug.Log("I SEE YOU");
-        }
-        else//default
-        {
-            transform.Translate(Vector3.left * enemySpeed * Time.deltaTime);//move left
-            Debug.Log("I MOVE LEFT");
+            if (DistanceBetweenEnemyAndPlayer() <= enemyStoppingDistance)
+            {
+                //Stop moving and attack
+                StartCoroutine(EnemyAttackPause());
+            }
+            else if (DistanceBetweenEnemyAndPlayer() < MinDistanceNeededToSeePlayer)//if the enemy can see the player
+            {
+                transform.position = Vector3.MoveTowards(this.transform.position, player.transform.position, enemySpeed * Time.deltaTime);//move directly towards the player
+                Debug.Log("I SEE YOU");
+            }
+            else//default
+            {
+                transform.Translate(Vector3.left * enemySpeed * Time.deltaTime);//move left
+                Debug.Log("I MOVE LEFT");
+            }
         }
     }
 
     float DistanceBetweenEnemyAndPlayer()
     {
         return Vector3.Distance(player.transform.position, this.transform.position);
+    }
+
+    /// <summary>
+    /// Counts the time that the enemy takes to attack, to prevent that enemy from moving during that time. 
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator EnemyAttackPause()
+    {
+        enemyCanMove = false;
+        yield return new WaitForSeconds(enemyAttackAnimationLength);
+        enemyCanMove = true;
+        Debug.Log("I ATTACK");
     }
 }
