@@ -38,6 +38,16 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     private CameraShake cameraScript;
 
+    //AudioFiles
+    [SerializeField]
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip bowShot;
+    [SerializeField]
+    private AudioClip brushtailHit;
+    [SerializeField]
+    private AudioClip finalAttack;
+
     private Animator anim;
     private Player playerScript;
     private MovePlayer movePlayerScript;
@@ -63,6 +73,7 @@ public class PlayerAttack : MonoBehaviour
             if (Input.GetButtonDown("BowAttack"))
             {
                 //AUDIO SHOOTING SOUND
+                audioSource.PlayOneShot(bowShot); //TestComment
                 anim.SetTrigger("ShootBow");//get the animator doing that attack
 
                 timeBetweenAttacks = originalTimeBetweenAttacks;//reset time
@@ -73,7 +84,8 @@ public class PlayerAttack : MonoBehaviour
                 {
                     enemiesToDamage[0].GetComponent<Enemy>().TakeDamage(punchDamage);
 
-                    //AUDIO add enemy get hit sound             
+                    //AUDIO add enemy get hit sound     
+                    audioSource.PlayOneShot(brushtailHit); //TestComment
                     target = enemiesToDamage[0].gameObject;
 
                     if(!target.GetComponent<Enemy>().deathCoroutineStarted)//if the enemy isn't already dying
