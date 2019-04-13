@@ -48,13 +48,11 @@ public class IanTestEnemyMovement : MonoBehaviour
             else if (DistanceBetweenEnemyAndPlayer() < MinDistanceNeededToSeePlayer)//if the enemy can see the player
             {
                 transform.position = Vector3.MoveTowards(this.transform.position, player.transform.position, enemySpeed * Time.deltaTime);//move directly towards the player
-                Debug.Log("I SEE YOU");
                 anim.SetBool("isMoving", true);//let the animator know the enemy has started moving
             }
             else//default
             {
                 transform.Translate(Vector3.left * enemySpeed * Time.deltaTime);//move left
-                Debug.Log("I MOVE LEFT");
                 anim.SetBool("isMoving", true);//let the animator know the enemy has started moving
             }
         }

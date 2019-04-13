@@ -36,7 +36,6 @@ public class Player : MonoBehaviour
     {
         currentHealth -= damageAmount;
         resourceBar.SetHealth(currentHealth / 100);
-        Debug.Log(currentHealth);
     }
 
     public void AddEnergy(float chargeAdded)
