@@ -172,4 +172,9 @@ public class PlayerAttack : MonoBehaviour
     {
         return arrowDamage;
     }
+
+    public ParticleSystem GetDamageParticles()
+    {
+        return hurtParticles;
+    }
 }
