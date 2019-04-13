@@ -75,6 +75,7 @@ public class MoveArrow : MonoBehaviour
             else if (!isFacingRight)//or if we're facing left, go left
                 transform.Translate(Vector3.left * arrowSpeed * Time.deltaTime);
 
+        }
             Collider2D[] enemy = new Collider2D[10];
             ContactFilter2D contactFilter = new ContactFilter2D();
             contactFilter.SetLayerMask(allEnemies);
@@ -85,7 +86,6 @@ public class MoveArrow : MonoBehaviour
                 enemy[0].gameObject.GetComponent<Enemy>().TakeDamage(player.GetComponent<PlayerAttack>().GetArrowDamage());
                 Instantiate(player.GetComponent<PlayerAttack>().GetDamageParticles(), enemy[0].transform.position, Quaternion.identity);//put some blood particles on the enemy
             }
-        }
     }
 
     private IEnumerator FadeArrowOut()
