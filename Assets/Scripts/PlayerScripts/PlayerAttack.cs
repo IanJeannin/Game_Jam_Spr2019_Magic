@@ -32,7 +32,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     private float targetArrowLifetime, nonTargetArrowLifetime;
     [SerializeField]
-    private ParticleSystem hurtParticles;
+    private ParticleSystem hurtParticles, finalParticles;
     [SerializeField]
     private CameraShake cameraScript;
 
@@ -44,6 +44,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     private float timeBeforeExplosionForFinalAttack;
 
+
     private Animator anim;
     private Player playerScript;
     private MovePlayer movePlayerScript;
@@ -51,6 +52,7 @@ public class PlayerAttack : MonoBehaviour
     private GameObject target;
     private MoveArrow moveArrow;
     private AudioSource audio;
+    private GameObject finalParticleSpawn;
 
     private bool ableToUnleashFinal = false;
     private bool coroutineStarted = false;
@@ -62,6 +64,7 @@ public class PlayerAttack : MonoBehaviour
         playerScript = GetComponent<Player>();
         movePlayerScript = GetComponent<MovePlayer>();
         audio = GetComponent<AudioSource>();
+        finalParticleSpawn = GameObject.FindGameObjectWithTag("StarAttack");
     }
 
     private void Update()
@@ -81,6 +84,7 @@ public class PlayerAttack : MonoBehaviour
                 {
                     //AUDIO do final attack sound
                     audio.PlayOneShot(startOfFinalAttack, startOfFinalAttackVolume); //Final attack sound attached directly to audio source so it can be stopped.
+                    Instantiate(finalParticles, finalParticleSpawn.transform.position, Quaternion.identity);
                     StartCoroutine(FinalAttackSoundDelay());
                     timeBetweenAttacks = originalTimeBetweenAttacks;//sreset time
                     Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(finalAttackPosition.position, finalAttackRange, allEnemies);
