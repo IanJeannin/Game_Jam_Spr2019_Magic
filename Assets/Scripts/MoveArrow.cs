@@ -16,12 +16,15 @@ public class MoveArrow : MonoBehaviour
     [HideInInspector]
     public bool isFacingRight;
 
+    [HideInInspector]
     public float damage;
-
     private float elapsedTime;
+
+    private SpriteRenderer renderer;
         
     private void Start()
     {
+        renderer = GetComponent<SpriteRenderer>();
         elapsedTime = 0;
     }
 
@@ -40,7 +43,7 @@ public class MoveArrow : MonoBehaviour
         {
             if (elapsedTime >= targetArrowLifetime)//when the timer for a target arrow is up
             {
-                Destroy(this.gameObject);
+                StartCoroutine(FadeArrowOut());
                 elapsedTime = 0;
             }
         }
@@ -48,7 +51,7 @@ public class MoveArrow : MonoBehaviour
         {
             if (elapsedTime >= nonTargetArrowLifetime)//when the timer for a normal arrow is up...
             {
-                Destroy(this.gameObject);
+                StartCoroutine(FadeArrowOut());
                 elapsedTime = 0;//reset the timer
             }
         }
@@ -64,19 +67,18 @@ public class MoveArrow : MonoBehaviour
             transform.Translate(Vector3.left * arrowSpeed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private IEnumerator FadeArrowOut()
     {
-        if(target == null)//if the arrow's not honed in on something and happens to hit an enemy, we want to destory him
-        {
-            try
-            {
-                collision.GetComponent<Enemy>().TakeDamage(damage);
-            }
-            catch(System.NullReferenceException)
-            {
+        yield return new WaitForSeconds(.5f);//wait for the arrow to hit it
 
-            }
+        for (float f = 1f; f > 0; f -= .1f)
+        {
+            renderer.color = new Color(1, 1, 1, f);
+            yield return new WaitForSeconds(.1f);
         }
+
+        Destroy(this.gameObject);
     }
 }
+
 
