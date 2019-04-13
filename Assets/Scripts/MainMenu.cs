@@ -36,6 +36,12 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(gameScene);
     }
 
+    public void LoadMainMenu()
+    {
+        audio.PlayOneShot(click, clickVolume);
+        SceneManager.LoadScene(mainMenu);
+    }
+
     public void clickPlay()
     {
         audio.PlayOneShot(click, clickVolume);
