@@ -167,4 +167,9 @@ public class PlayerAttack : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(finalAttackPosition.position, finalAttackRange);
     }
+
+    public float GetArrowDamage()
+    {
+        return arrowDamage;
+    }
 }

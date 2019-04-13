@@ -184,7 +184,7 @@ MonoBehaviour:
   allEnemies:
     serializedVersion: 2
     m_Bits: 512
-  arrowDamage: 100
+  arrowDamage: 20
   chargePerAttack: 5
   finalAttackPosition: {fileID: 7176163365978396929}
   finalAttackRange: 10

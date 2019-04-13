@@ -21,6 +21,8 @@ public class MoveArrow : MonoBehaviour
     private float elapsedTime;
     [SerializeField]
     private LayerMask allEnemies;
+    [SerializeField]
+    private GameObject player;
 
     private SpriteRenderer renderer;
         
@@ -80,7 +82,7 @@ public class MoveArrow : MonoBehaviour
             if (enemy[0] != null)
             {
                 Destroy(gameObject);
-                enemy[0].gameObject.GetComponent<Enemy>().TakeDamage(damage);
+                enemy[0].gameObject.GetComponent<Enemy>().TakeDamage(player.GetComponent<PlayerAttack>().GetArrowDamage());
             }
         }
     }
