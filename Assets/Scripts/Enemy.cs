@@ -13,15 +13,19 @@ public class Enemy : MonoBehaviour
 
     private float health;
     private IanTestEnemyMovement movementScript;
+    private Animator anim;
 
     private void Start()
     {
         health = maxHealth;
+        anim = GetComponent<Animator>();
         movementScript = GetComponent<IanTestEnemyMovement>();
     }
 
     public void TakeDamage(float damage)
     {
+        anim.SetTrigger("Hurt");//tell the animator to do the hurt anim
+
         health -= damage;
         Debug.Log($"Enemy Health: { health}");
         if (health <= enemyDazeThreshold)
@@ -30,9 +34,8 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            movementScript.StunEnemyBriefly();
+            movementScript.StunEnemyBriefly();//This is when enemy hurt
         }
-        
     }
 
     private void Update()

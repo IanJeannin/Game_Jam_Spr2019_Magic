@@ -27,8 +27,11 @@ public class IanTestEnemyMovement : MonoBehaviour
     //Placeholder variable to stop enemy from moving if their attack animation is playing
     private float enemyAttackAnimationLength=1;
 
+    private Animator anim;
+
     private void Start()
     {
+        anim = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -39,16 +42,20 @@ public class IanTestEnemyMovement : MonoBehaviour
             if (DistanceBetweenEnemyAndPlayer() <= enemyStoppingDistance)//stop moving and attack if within melee of player
             {
                 StartCoroutine(EnemyAttackPause());
+                anim.SetBool("isMoving", false);//let the animator know the enemy has stopped moving
+
             }
             else if (DistanceBetweenEnemyAndPlayer() < MinDistanceNeededToSeePlayer)//if the enemy can see the player
             {
                 transform.position = Vector3.MoveTowards(this.transform.position, player.transform.position, enemySpeed * Time.deltaTime);//move directly towards the player
                 Debug.Log("I SEE YOU");
+                anim.SetBool("isMoving", true);//let the animator know the enemy has started moving
             }
             else//default
             {
                 transform.Translate(Vector3.left * enemySpeed * Time.deltaTime);//move left
                 Debug.Log("I MOVE LEFT");
+                anim.SetBool("isMoving", true);//let the animator know the enemy has started moving
             }
         }
     }
@@ -76,9 +83,9 @@ public class IanTestEnemyMovement : MonoBehaviour
     private IEnumerator EnemyAttackPause()
     {
         enemyCanMove = false;
+        anim.SetTrigger("Attack");//let the animator know the enemy is attacking
         yield return new WaitForSeconds(enemyAttackAnimationLength);
         enemyCanMove = true;
-        Debug.Log("I ATTACK");
         player.GetComponent<Player>().TakeDamage(enemyDamage);
     }
 
