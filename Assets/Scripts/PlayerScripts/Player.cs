@@ -66,6 +66,10 @@ public class Player : MonoBehaviour
                 StartCoroutine(GetRidOfFinalMarkers());
             }
         }
+        else
+        {
+            markerHasNotGoneOff = true;
+        }
         resourceBar.SetEnergy(currentCharge/100);
     }
 
