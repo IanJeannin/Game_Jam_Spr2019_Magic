@@ -60,12 +60,12 @@ public class Enemy : MonoBehaviour
     {
         deathCoroutineStarted = true;
 
-        yield return new WaitForSeconds(.5f);//wait for the arrow to hit it
+        yield return new WaitForSeconds(.2f);//wait for the arrow to hit it
 
         for (float f = 1f; f > 0; f -= .1f)
         {
             renderer.color = new Color(1, 1, 1, f);
-            yield return new WaitForSeconds(.1f);
+            yield return new WaitForSeconds(.05f);
         }
 
         Destroy(this.gameObject);
