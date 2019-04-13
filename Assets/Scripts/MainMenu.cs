@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour
     private string mainMenu;
 
     [SerializeField]
-    private GameObject instructionsPanel;
+    private GameObject instructionsPanel, creditsPanel;
 
     //AUDIO
     [SerializeField]
@@ -28,6 +28,7 @@ public class MainMenu : MonoBehaviour
     {
         audio = GetComponent<AudioSource>();
         instructionsPanel.SetActive(false);
+        creditsPanel.SetActive(false);
     }
     public void loadGameScene()
     {
@@ -44,13 +45,13 @@ public class MainMenu : MonoBehaviour
     public void goToCredits()
     {
         audio.PlayOneShot(click, clickVolume);
-        SceneManager.LoadScene(creditsScene);
+        creditsPanel.SetActive(true);
     }
 
     public void backToMenu()
     {
         audio.PlayOneShot(click, clickVolume);
-        SceneManager.LoadScene(mainMenu);
+        creditsPanel.SetActive(false);
     }
 
     public void ExitGame()
