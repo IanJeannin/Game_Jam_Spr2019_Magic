@@ -6,15 +6,18 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField]
     private float maxHealth=100;
+
     [Tooltip("If an enemy falls below this, they will be dazed.")]
     [SerializeField]
     private float enemyDazeThreshold;
 
     private float health;
+    private IanTestEnemyMovement movementScript;
 
     private void Start()
     {
         health = maxHealth;
+        movementScript = GetComponent<IanTestEnemyMovement>();
     }
 
     public void TakeDamage(float damage)
@@ -23,11 +26,11 @@ public class Enemy : MonoBehaviour
         Debug.Log($"Enemy Health: { health}");
         if (health <= enemyDazeThreshold)
         {
-            gameObject.GetComponent<IanTestEnemyMovement>().DazeEnemy();
+            movementScript.DazeEnemy();
         }
         else
         {
-            gameObject.GetComponent<IanTestEnemyMovement>().StunEnemyBriefly();
+            movementScript.StunEnemyBriefly();
         }
         
     }
