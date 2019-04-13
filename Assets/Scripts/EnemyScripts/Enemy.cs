@@ -11,15 +11,19 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float enemyDazeThreshold;
 
-    private float health;
     private IanTestEnemyMovement movementScript;
     private Animator anim;
+    private SpriteRenderer renderer;
+
+    private float health;
+    public bool deathCoroutineStarted;
 
     private void Start()
     {
         health = maxHealth;
         anim = GetComponent<Animator>();
         movementScript = GetComponent<IanTestEnemyMovement>();
+        renderer = GetComponent<SpriteRenderer>();
     }
 
     public void TakeDamage(float damage)
@@ -44,7 +48,24 @@ public class Enemy : MonoBehaviour
         if(health<=0)
         {
             //AUDIO ENEMY DEATH sound
-            Destroy(gameObject);//maybe move this to a coroutine so we can play a death animation or hurt frame
+            if(!deathCoroutineStarted)
+            StartCoroutine(FadeOutDeath());
         }
     }
+
+    private IEnumerator FadeOutDeath()
+    {
+        deathCoroutineStarted = true;
+
+        yield return new WaitForSeconds(.5f);//wait for the arrow to hit it
+
+        for (float f = 1f; f > 0; f -= .1f)
+        {
+            renderer.color = new Color(1, 1, 1, f);
+            yield return new WaitForSeconds(.1f);
+        }
+
+        Destroy(this.gameObject);
+    }
+
 }

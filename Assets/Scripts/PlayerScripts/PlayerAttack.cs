@@ -54,7 +54,7 @@ public class PlayerAttack : MonoBehaviour
         //If the attack cd is 0
         if(timeBetweenAttacks <= 0)
         {
-            if (Input.GetButton("BowAttack"))
+            if (Input.GetButtonDown("BowAttack"))
             {
                 //AUDIO SHOOTING SOUND
                 anim.SetTrigger("ShootBow");//get the animator doing that attack
@@ -66,7 +66,7 @@ public class PlayerAttack : MonoBehaviour
                 try//try to shoot it at a target by getting the closest nasty boi
                 {
                     enemiesToDamage[0].GetComponent<Enemy>().TakeDamage(punchDamage);
-                    //AUDIO add enemy get hit sound
+                    //AUDIO add enemy get hit sound             
                     target = enemiesToDamage[0].gameObject;
                     playerScript.AddEnergy(chargePerAttack);
 
@@ -89,7 +89,7 @@ public class PlayerAttack : MonoBehaviour
                 }
 
             }
-            else if (Input.GetButton("FinalAttack"))
+            else if (Input.GetButtonDown("FinalAttack"))
             {
                 if (ableToUnleashFinal)
                 {

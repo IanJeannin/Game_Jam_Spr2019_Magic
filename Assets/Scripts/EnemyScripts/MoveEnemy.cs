@@ -15,14 +15,23 @@ public class MoveEnemy : MonoBehaviour
     [SerializeField]
     private float enemyStoppingDistance;
 
+    private Enemy enemy;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        enemy = GetComponent<Enemy>();
     }
 
     void Update()
     {
-        if(DistanceBetweenEnemyAndPlayer() <= enemyStoppingDistance)
+        if (!enemy.deathCoroutineStarted)//if the enemy isn't in the process of dying
+            Move();
+    }
+
+    private void Move()
+    {
+        if (DistanceBetweenEnemyAndPlayer() <= enemyStoppingDistance)//if the enemy is close enough to the player that it is in attack ran
         {
             //Stop moving and attack
             Debug.Log("I ATTACK");
@@ -30,13 +39,12 @@ public class MoveEnemy : MonoBehaviour
         else if (DistanceBetweenEnemyAndPlayer() < MinDistanceNeededToSeePlayer)//if the enemy can see the player
         {
             transform.Translate(Vector3.MoveTowards(this.transform.position, player.transform.position, enemySpeed * Time.deltaTime));//move directly towards the player
-            Debug.Log("I SEE YOU");
         }
         else//default
         {
             transform.Translate(Vector3.left * enemySpeed * Time.deltaTime);//move left
             Debug.Log("I MOVE LEFT");
-        }      
+        }
     }
 
     float DistanceBetweenEnemyAndPlayer()

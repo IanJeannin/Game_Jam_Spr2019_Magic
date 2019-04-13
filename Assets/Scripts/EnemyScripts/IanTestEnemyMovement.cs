@@ -27,34 +27,39 @@ public class IanTestEnemyMovement : MonoBehaviour
     //Placeholder variable to stop enemy from moving if their attack animation is playing
     private float enemyAttackAnimationLength=1;
 
+    private Enemy enemy;
     private Animator anim;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
+        enemy = GetComponent<Enemy>();
     }
 
     void Update()
     {
-        if (enemyCanMove)
-        {
-            if (DistanceBetweenEnemyAndPlayer() <= enemyStoppingDistance)//stop moving and attack if within melee of player
-            {
-                StartCoroutine(EnemyAttackPause());
-                anim.SetBool("isMoving", false);//let the animator know the enemy has stopped moving
+        if (enemyCanMove && !enemy.deathCoroutineStarted)
+            Move();
+    }
 
-            }
-            else if (DistanceBetweenEnemyAndPlayer() < MinDistanceNeededToSeePlayer)//if the enemy can see the player
-            {
-                transform.position = Vector3.MoveTowards(this.transform.position, player.transform.position, enemySpeed * Time.deltaTime);//move directly towards the player
-                anim.SetBool("isMoving", true);//let the animator know the enemy has started moving
-            }
-            else//default
-            {
-                transform.Translate(Vector3.left * enemySpeed * Time.deltaTime);//move left
-                anim.SetBool("isMoving", true);//let the animator know the enemy has started moving
-            }
+    private void Move()
+    {
+        if (DistanceBetweenEnemyAndPlayer() <= enemyStoppingDistance)//stop moving and attack if within melee of player
+        {
+            StartCoroutine(EnemyAttackPause());
+            anim.SetBool("isMoving", false);//let the animator know the enemy has stopped moving
+
+        }
+        else if (DistanceBetweenEnemyAndPlayer() < MinDistanceNeededToSeePlayer)//if the enemy can see the player
+        {
+            transform.position = Vector3.MoveTowards(this.transform.position, player.transform.position, enemySpeed * Time.deltaTime);//move directly towards the player
+            anim.SetBool("isMoving", true);//let the animator know the enemy has started moving
+        }
+        else//default
+        {
+            transform.Translate(Vector3.left * enemySpeed * Time.deltaTime);//move left
+            anim.SetBool("isMoving", true);//let the animator know the enemy has started moving
         }
     }
 
