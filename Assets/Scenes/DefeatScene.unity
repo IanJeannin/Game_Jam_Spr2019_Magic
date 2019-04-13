@@ -112,6 +112,75 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &377544480
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7950894361083706294, guid: 70d128f21cbd4394392340fd8a586059,
+        type: 3}
+      propertyPath: m_Name
+      value: SceneHolder
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950894361083706292, guid: 70d128f21cbd4394392340fd8a586059,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1023.1406
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950894361083706292, guid: 70d128f21cbd4394392340fd8a586059,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 649.6687
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950894361083706292, guid: 70d128f21cbd4394392340fd8a586059,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.410457
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950894361083706292, guid: 70d128f21cbd4394392340fd8a586059,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950894361083706292, guid: 70d128f21cbd4394392340fd8a586059,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950894361083706292, guid: 70d128f21cbd4394392340fd8a586059,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950894361083706292, guid: 70d128f21cbd4394392340fd8a586059,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950894361083706292, guid: 70d128f21cbd4394392340fd8a586059,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950894361083706292, guid: 70d128f21cbd4394392340fd8a586059,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950894361083706292, guid: 70d128f21cbd4394392340fd8a586059,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950894361083706292, guid: 70d128f21cbd4394392340fd8a586059,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 70d128f21cbd4394392340fd8a586059, type: 3}
 --- !u!1 &380447823
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,7 +575,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 996791290}
+      - m_Target: {fileID: 0}
         m_MethodName: LoadMainMenu
         m_Mode: 1
         m_Arguments:
@@ -573,7 +642,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 996791290}
+        - m_Target: {fileID: 0}
           m_MethodName: PlayHoverSound
           m_Mode: 1
           m_Arguments:
@@ -732,58 +801,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 996095365}
   m_CullTransparentMesh: 0
---- !u!1 &996791289
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 996791291}
-  - component: {fileID: 996791290}
-  m_Layer: 0
-  m_Name: SceneHolder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &996791290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 996791289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aad7686a65ba34943b5eeb841487d073, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameScene: IanTestScene
-  creditsScene: Credits
-  mainMenu: MainMenu
-  instructionsPanel: {fileID: 0}
-  creditsPanel: {fileID: 0}
-  hoverVolume: 0
-  clickVolume: 0
-  hover: {fileID: 0}
-  click: {fileID: 0}
---- !u!4 &996791291
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 996791289}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1023.1406, y: 649.6687, z: 2.410457}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1181943092
 GameObject:
   m_ObjectHideFlags: 0
@@ -938,7 +955,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 996791290}
+      - m_Target: {fileID: 0}
         m_MethodName: ExitGame
         m_Mode: 1
         m_Arguments:
@@ -1005,7 +1022,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 996791290}
+        - m_Target: {fileID: 0}
           m_MethodName: PlayHoverSound
           m_Mode: 1
           m_Arguments:
