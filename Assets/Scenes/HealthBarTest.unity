@@ -1712,7 +1712,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: c762d85d5440ad246b3f2bebf0d501ad, type: 3}
     - target: {fileID: 1703588623, guid: a8f726de74a7f894f833b8c768c8e89a, type: 3}
       propertyPath: shootVolume
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1703588623, guid: a8f726de74a7f894f833b8c768c8e89a, type: 3}
       propertyPath: enemyHurtVolume

@@ -70,6 +70,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 //AUDIO SHOOTING SOUND
                 anim.SetTrigger("ShootBow");//get the animator doing that attack
+                audio.PlayOneShot(shootSound, shootVolume);
 
                 timeBetweenAttacks = originalTimeBetweenAttacks;//reset time
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(punchAttackPosition.position, punchAttackRange, allEnemies);
@@ -79,11 +80,10 @@ public class PlayerAttack : MonoBehaviour
                 {
                     enemiesToDamage[0].GetComponent<Enemy>().TakeDamage(punchDamage);
 
-                    audio.PlayOneShot(shootSound, shootVolume);            
                     target = enemiesToDamage[0].gameObject;
 
-                    if(!target.GetComponent<Enemy>().deathCoroutineStarted)//if the enemy isn't already dying
-                    Instantiate(hurtParticles, target.transform.position, Quaternion.identity);//put some blood particles on the enemy
+                    if (!target.GetComponent<Enemy>().deathCoroutineStarted)//if the enemy isn't already dying
+                        Instantiate(hurtParticles, target.transform.position, Quaternion.identity);//put some blood particles on the enemy
                     audio.PlayOneShot(enemyHurtSound, enemyHurtVolume);
 
                     playerScript.AddEnergy(chargePerAttack);
@@ -97,7 +97,7 @@ public class PlayerAttack : MonoBehaviour
                     moveArrow.targetArrowLifetime = targetArrowLifetime;
                     moveArrow.damage = punchDamage;//so the arrow knows how much damage
                 }
-                catch(IndexOutOfRangeException)//if there's nothing at that index, just shoot straight
+                catch (IndexOutOfRangeException)//if there's nothing at that index, just shoot straight
                 {
                     arrowInstance = Instantiate(arrowPrefab, this.gameObject.transform.position, Quaternion.identity);//make the arrow appear
                     moveArrow = arrowInstance.GetComponent<MoveArrow>();
