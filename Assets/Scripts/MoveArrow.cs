@@ -83,6 +83,7 @@ public class MoveArrow : MonoBehaviour
             {
                 Destroy(gameObject);
                 enemy[0].gameObject.GetComponent<Enemy>().TakeDamage(player.GetComponent<PlayerAttack>().GetArrowDamage());
+                Instantiate(player.GetComponent<PlayerAttack>().GetDamageParticles(), enemy[0].transform.position, Quaternion.identity);//put some blood particles on the enemy
             }
         }
     }
