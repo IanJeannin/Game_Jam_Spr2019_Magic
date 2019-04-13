@@ -128,7 +128,6 @@ public class PlayerAttack : MonoBehaviour
         {
             timeBetweenAttacks = originalTimeBetweenAttacks;//reset time
             Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(arrowAttackPosition.position, arrowAttackRange, allEnemies);
-
             enemiesToDamage[0].GetComponent<Enemy>().TakeDamage(arrowDamage);
 
             target = enemiesToDamage[0].gameObject;
@@ -171,5 +170,10 @@ public class PlayerAttack : MonoBehaviour
     public float GetArrowDamage()
     {
         return arrowDamage;
+    }
+
+    public ParticleSystem GetDamageParticles()
+    {
+        return hurtParticles;
     }
 }
