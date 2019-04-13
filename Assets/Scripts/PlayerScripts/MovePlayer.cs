@@ -6,7 +6,8 @@ public class MovePlayer : MonoBehaviour
 {
     [SerializeField]
     private float speed;
-
+    [SerializeField]
+    private GameObject startingArrowAttackPosition;
     [HideInInspector]
     public bool isFacingRight;//tells you which way the player is facing to be referenced in attack and move stuff
 
@@ -15,12 +16,15 @@ public class MovePlayer : MonoBehaviour
 
     private string horizontalName, verticalName;
     private float horizontalValue, verticalValue;
+    private float arrowAttackPosition;
+    private float normalAttackPosition;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
+        arrowAttackPosition = startingArrowAttackPosition.transform.position.x;
+        normalAttackPosition = startingArrowAttackPosition.transform.position.x;
         horizontalName = "Horizontal";
         verticalName = "Vertical";
     }
@@ -58,13 +62,16 @@ public class MovePlayer : MonoBehaviour
     {
         if (horizontalValue > 0)
         {
+            arrowAttackPosition = gameObject.transform.position.x-normalAttackPosition/2;
             spriteRenderer.flipX = false;
             isFacingRight = true;
         }
         if (horizontalValue < 0)
         {
+            arrowAttackPosition = gameObject.transform.position.x+normalAttackPosition/2; //Flips the position of hitbox
             spriteRenderer.flipX = true;
             isFacingRight = false;
         }
+        startingArrowAttackPosition.transform.position = new Vector3(arrowAttackPosition, startingArrowAttackPosition.transform.position.y);
     }
 }

@@ -1511,6 +1511,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1720347048 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1762499596, guid: a8f726de74a7f894f833b8c768c8e89a,
+    type: 3}
+  m_PrefabInstance: {fileID: 6243230948883799183}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1760466608
 GameObject:
   m_ObjectHideFlags: 0
@@ -1884,6 +1890,16 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 3.25625
       objectReference: {fileID: 0}
+    - target: {fileID: 6446653711114390709, guid: a8f726de74a7f894f833b8c768c8e89a,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.7943751
+      objectReference: {fileID: 0}
+    - target: {fileID: 6446653711114390709, guid: a8f726de74a7f894f833b8c768c8e89a,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 3.25625
+      objectReference: {fileID: 0}
     - target: {fileID: 5006609209328538127, guid: a8f726de74a7f894f833b8c768c8e89a,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -1894,15 +1910,14 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 3.25625
       objectReference: {fileID: 0}
-    - target: {fileID: 6446653711114390709, guid: a8f726de74a7f894f833b8c768c8e89a,
+    - target: {fileID: 8851882283400724227, guid: a8f726de74a7f894f833b8c768c8e89a,
         type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.7943751
-      objectReference: {fileID: 0}
-    - target: {fileID: 6446653711114390709, guid: a8f726de74a7f894f833b8c768c8e89a,
-        type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 3.25625
+      propertyPath: startingArrowAttackPosition
+      value: 
+      objectReference: {fileID: 1720347048}
+    - target: {fileID: 1762499597, guid: a8f726de74a7f894f833b8c768c8e89a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8190621917467932677, guid: a8f726de74a7f894f833b8c768c8e89a, type: 3}
