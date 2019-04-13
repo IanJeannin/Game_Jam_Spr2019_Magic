@@ -398,8 +398,7 @@ MonoBehaviour:
   - {fileID: 570818996}
   minTimeBetweenSpawn: 2
   maxTimeBetweenSpawn: 4
-  enemyPrefab: {fileID: 7231584010643433050, guid: c2fa46b3c290db34f9a75d6534b0c2a9,
-    type: 3}
+  enemyPrefabs: []
 --- !u!4 &2056869765
 Transform:
   m_ObjectHideFlags: 0
@@ -483,6 +482,14 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1703588623, guid: a8f726de74a7f894f833b8c768c8e89a, type: 3}
+      propertyPath: punchAttackRange
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1762499597, guid: a8f726de74a7f894f833b8c768c8e89a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8f726de74a7f894f833b8c768c8e89a, type: 3}
