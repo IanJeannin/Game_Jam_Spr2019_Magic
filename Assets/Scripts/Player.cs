@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float maxCharge;
     [SerializeField]
-    private GameObject resourceBar;
+    private ResourceBars resourceBar;
     [SerializeField]
     private GameObject finalUnlockedMarkers;
     [SerializeField]
@@ -28,14 +28,14 @@ public class Player : MonoBehaviour
     {
         currentHealth = maxHealth;
         currentCharge = 0;
-        resourceBar.GetComponent<ResourceBars>().SetEnergy(currentCharge);
+        resourceBar.SetEnergy(currentCharge);
         finalUnlockedMarkers.SetActive(false);
     }
 
     public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
-        resourceBar.GetComponent<ResourceBars>().SetHealth(currentHealth / 100);
+        resourceBar.SetHealth(currentHealth / 100);
         Debug.Log(currentHealth);
     }
 
@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
                 StartCoroutine(GetRidOfFinalMarkers());
             }
         }
-        resourceBar.GetComponent<ResourceBars>().SetEnergy(currentCharge/100);
+        resourceBar.SetEnergy(currentCharge/100);
     }
 
 

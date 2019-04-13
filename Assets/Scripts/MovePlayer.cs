@@ -7,11 +7,15 @@ public class MovePlayer : MonoBehaviour
     [SerializeField]
     private float speed;
 
+    private Animator anim;
+
     private string horizontalName, verticalName;
     private float horizontalValue, verticalValue;
 
     private void Start()
     {
+        anim = GetComponent<Animator>();
+
         horizontalName = "Horizontal";
         verticalName = "Vertical";
     }
@@ -23,6 +27,14 @@ public class MovePlayer : MonoBehaviour
     void Update()
     {
         GetInput();
+        SetAnimBasedOnInput();//tells the animator whether the player is moving or not
+    }
+
+    void SetAnimBasedOnInput()
+    {
+        if (Mathf.Abs(horizontalValue) > 0 || Mathf.Abs(verticalValue) > 0)
+            anim.SetBool("isMoving", true);
+        else anim.SetBool("isMoving", false);
     }
 
     void GetInput()
