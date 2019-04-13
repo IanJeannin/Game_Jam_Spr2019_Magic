@@ -41,6 +41,12 @@ public class PlayerAttack : MonoBehaviour
     private AudioClip shootSound, enemyHurtSound;
     [SerializeField]
     private float shootVolume, enemyHurtVolume;
+    [SerializeField]
+    private float timeBeforeExplosionForFinalAttack;
+    [SerializeField]
+    private AudioClip startOfFinalAttack;
+    [SerializeField]
+    private AudioClip finalAttackExplosion;
 
     private Animator anim;
     private Player playerScript;
@@ -113,6 +119,8 @@ public class PlayerAttack : MonoBehaviour
                 if (ableToUnleashFinal)
                 {
                     //AUDIO do final attack sound
+                    audio.Play(); //Final attack sound attached directly to audio source so it can be stopped.
+                    StartCoroutine(FinalAttackSoundDelay());
                     timeBetweenAttacks = originalTimeBetweenAttacks;//sreset time
                     Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(finalAttackPosition.position, finalAttackRange, allEnemies);
 
@@ -133,6 +141,13 @@ public class PlayerAttack : MonoBehaviour
         {
             timeBetweenAttacks -= Time.deltaTime;
         }
+    }
+    
+    public IEnumerator FinalAttackSoundDelay()
+    {
+        yield return new WaitForSeconds(timeBeforeExplosionForFinalAttack);
+        audio.Stop(); //Stops playing the star sounds.
+        audio.PlayOneShot(finalAttackExplosion);
     }
 
     public void UnlockFinalAttack()
