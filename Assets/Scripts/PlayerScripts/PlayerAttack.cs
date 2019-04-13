@@ -32,6 +32,9 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     private float targetArrowLifetime, nonTargetArrowLifetime;
 
+    [SerializeField]
+    private ParticleSystem hurtParticles;
+
     private Animator anim;
     private Player playerScript;
     private MovePlayer movePlayerScript;
@@ -66,6 +69,8 @@ public class PlayerAttack : MonoBehaviour
                 try//try to shoot it at a target by getting the closest nasty boi
                 {
                     enemiesToDamage[0].GetComponent<Enemy>().TakeDamage(punchDamage);
+                    Instantiate(hurtParticles, enemiesToDamage[0].transform.position, Quaternion.identity);//put some blood particles on the enemy
+
                     //AUDIO add enemy get hit sound             
                     target = enemiesToDamage[0].gameObject;
                     playerScript.AddEnergy(chargePerAttack);

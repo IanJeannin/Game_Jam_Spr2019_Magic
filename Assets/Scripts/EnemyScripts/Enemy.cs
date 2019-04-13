@@ -14,7 +14,6 @@ public class Enemy : MonoBehaviour
     [HideInInspector]
     public bool deathCoroutineStarted;//this tells us whether the enemy is dying
 
-    private ParticleSystem hurtParticles;
     private IanTestEnemyMovement movementScript;
     private Animator anim;
     private SpriteRenderer renderer;
@@ -25,7 +24,6 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         health = maxHealth;
-        hurtParticles = GetComponentInChildren<ParticleSystem>();
         anim = GetComponent<Animator>();
         movementScript = GetComponent<IanTestEnemyMovement>();
         renderer = GetComponent<SpriteRenderer>();
@@ -46,9 +44,6 @@ public class Enemy : MonoBehaviour
         {
             movementScript.StunEnemyBriefly();//This is when enemy hurt
         }
-
-        //small enemy knockback
-        hurtParticles.Play();
     }
 
     private void Update()
