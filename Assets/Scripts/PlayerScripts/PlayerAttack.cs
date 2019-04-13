@@ -77,6 +77,7 @@ public class PlayerAttack : MonoBehaviour
                     moveArrow.isFacingRight = movePlayerScript.isFacingRight;//pass in variables to specific arrows
                     moveArrow.target = target;
                     moveArrow.targetArrowLifetime = targetArrowLifetime;
+                    moveArrow.damage = punchDamage;//so the arrow knows how much damage
                 }
                 catch(IndexOutOfRangeException)//if there's nothing at that index, just shoot straight
                 {

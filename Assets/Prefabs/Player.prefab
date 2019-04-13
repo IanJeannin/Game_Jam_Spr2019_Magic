@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  isFacingRight: 0
 --- !u!61 &8190621917467932677
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -197,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 628192ee806f791458798746b5d627e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalTimeBetweenAttacks: 0.25
+  originalTimeBetweenAttacks: 0.75
   punchAttackPosition: {fileID: 1762499597}
   punchAttackRange: 4.99
   allEnemies:
@@ -208,6 +209,10 @@ MonoBehaviour:
   finalAttackPosition: {fileID: 7176163365978396929}
   finalAttackRange: 10
   finalDamage: 75
+  arrowPrefab: {fileID: 0}
+  arrowSpeed: 0
+  targetArrowLifetime: 0
+  nonTargetArrowLifetime: 0
 --- !u!1 &1780817891536477324
 GameObject:
   m_ObjectHideFlags: 0

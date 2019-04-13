@@ -16,6 +16,8 @@ public class MoveArrow : MonoBehaviour
     [HideInInspector]
     public bool isFacingRight;
 
+    public float damage;
+
     private float elapsedTime;
         
     private void Start()
@@ -60,6 +62,21 @@ public class MoveArrow : MonoBehaviour
             transform.Translate(Vector3.right * arrowSpeed * Time.deltaTime);
         else if (!isFacingRight)//or if we're facing left, go left
             transform.Translate(Vector3.left * arrowSpeed * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(target == null)//if the arrow's not honed in on something and happens to hit an enemy, we want to destory him
+        {
+            try
+            {
+                collision.GetComponent<Enemy>().TakeDamage(damage);
+            }
+            catch(System.NullReferenceException)
+            {
+
+            }
+        }
     }
 }
 
