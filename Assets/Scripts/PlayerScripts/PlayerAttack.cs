@@ -8,13 +8,13 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     private float originalTimeBetweenAttacks;
     [SerializeField]
-    private Transform punchAttackPosition;
+    private Transform arrowAttackPosition;
     [SerializeField]
-    private float punchAttackRange;
+    private float arrowAttackRange;
     [SerializeField]
     private LayerMask allEnemies;
     [SerializeField]
-    private float punchDamage;
+    private float arrowDamage;
     [SerializeField]
     private float chargePerAttack;
     [SerializeField]
@@ -127,9 +127,9 @@ public class PlayerAttack : MonoBehaviour
         try//try to shoot it at a target by getting the closest nasty boi
         {
             timeBetweenAttacks = originalTimeBetweenAttacks;//reset time
-            Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(punchAttackPosition.position, punchAttackRange, allEnemies);
+            Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(arrowAttackPosition.position, arrowAttackRange, allEnemies);
 
-            enemiesToDamage[0].GetComponent<Enemy>().TakeDamage(punchDamage);
+            enemiesToDamage[0].GetComponent<Enemy>().TakeDamage(arrowDamage);
 
             target = enemiesToDamage[0].gameObject;
 
@@ -146,7 +146,7 @@ public class PlayerAttack : MonoBehaviour
             moveArrow.isFacingRight = movePlayerScript.isFacingRight;//pass in variables to specific arrows
             moveArrow.target = target;
             moveArrow.targetArrowLifetime = targetArrowLifetime;
-            moveArrow.damage = punchDamage;//so the arrow knows how much damage
+            moveArrow.damage = arrowDamage;//so the arrow knows how much damage
         }
         catch (IndexOutOfRangeException)//if there's nothing at that index, just shoot straight
         {
@@ -163,7 +163,7 @@ public class PlayerAttack : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(punchAttackPosition.position, punchAttackRange);
+        Gizmos.DrawWireSphere(arrowAttackPosition.position, arrowAttackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(finalAttackPosition.position, finalAttackRange);
     }
