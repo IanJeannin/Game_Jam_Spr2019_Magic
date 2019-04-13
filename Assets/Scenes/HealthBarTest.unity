@@ -699,6 +699,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1053383319 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1582619679334194715, guid: a8f726de74a7f894f833b8c768c8e89a,
+    type: 3}
+  m_PrefabInstance: {fileID: 6243230948883799183}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1053383327
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053383319}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 725660703492ee84bb15ad20be766a41, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1081517408
 GameObject:
   m_ObjectHideFlags: 0
@@ -1486,7 +1511,7 @@ PrefabInstance:
     - target: {fileID: 1703588617, guid: a8f726de74a7f894f833b8c768c8e89a, type: 3}
       propertyPath: resourceBar
       value: 
-      objectReference: {fileID: 593663988}
+      objectReference: {fileID: 593663989}
     - target: {fileID: 1703588617, guid: a8f726de74a7f894f833b8c768c8e89a, type: 3}
       propertyPath: finalUnlockedMarkers
       value: 

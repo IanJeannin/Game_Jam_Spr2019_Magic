@@ -36,9 +36,8 @@ public class IanTestEnemyMovement : MonoBehaviour
     {
         if (enemyCanMove)
         {
-            if (DistanceBetweenEnemyAndPlayer() <= enemyStoppingDistance)
+            if (DistanceBetweenEnemyAndPlayer() <= enemyStoppingDistance)//stop moving and attack if within melee of player
             {
-                //Stop moving and attack
                 StartCoroutine(EnemyAttackPause());
             }
             else if (DistanceBetweenEnemyAndPlayer() < MinDistanceNeededToSeePlayer)//if the enemy can see the player
