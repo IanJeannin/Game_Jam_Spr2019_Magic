@@ -11,16 +11,21 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float enemyDazeThreshold;
 
+    [HideInInspector]
+    public bool deathCoroutineStarted;//this tells us whether the enemy is dying
+
+    private ParticleSystem hurtParticles;
     private IanTestEnemyMovement movementScript;
     private Animator anim;
     private SpriteRenderer renderer;
 
     private float health;
-    public bool deathCoroutineStarted;
+
 
     private void Start()
     {
         health = maxHealth;
+        hurtParticles = GetComponentInChildren<ParticleSystem>();
         anim = GetComponent<Animator>();
         movementScript = GetComponent<IanTestEnemyMovement>();
         renderer = GetComponent<SpriteRenderer>();
@@ -30,9 +35,9 @@ public class Enemy : MonoBehaviour
     {
         //AUDIO enemy is hurt sound
         anim.SetTrigger("Hurt");//tell the animator to do the hurt anim
-
         health -= damage;
         Debug.Log($"Enemy Health: { health}");
+
         if (health <= enemyDazeThreshold)
         {
             movementScript.DazeEnemy();
@@ -41,6 +46,9 @@ public class Enemy : MonoBehaviour
         {
             movementScript.StunEnemyBriefly();//This is when enemy hurt
         }
+
+        //small enemy knockback
+        hurtParticles.Play();
     }
 
     private void Update()
@@ -52,6 +60,23 @@ public class Enemy : MonoBehaviour
             StartCoroutine(FadeOutDeath());
         }
     }
+
+    //void DoEnemyKnockback()
+    //{
+    //    if (isOnLeftSide)
+    //    {
+    //        rigidbody.AddForce(-Vector2.right * knockbackForceHorizontal, ForceMode2D.Impulse);
+
+    //    }
+
+    //    else if (!isOnLeftSide)
+    //    {
+    //        rigidbody.AddForce(Vector2.right * knockbackForceHorizontal, ForceMode2D.Impulse);
+    //    }
+    //    //AUDIO normal fish hit sound
+    //    rigidbody.AddForce(Vector2.up * knockbackForceUp, ForceMode2D.Impulse);
+    //}
+
 
     private IEnumerator FadeOutDeath()
     {
@@ -67,5 +92,4 @@ public class Enemy : MonoBehaviour
 
         Destroy(this.gameObject);
     }
-
 }
