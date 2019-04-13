@@ -14,8 +14,12 @@ public class IanTestEnemyMovement : MonoBehaviour
     private float enemyStoppingDistance;
     [SerializeField]
     private float enemyDamage;
+    [Tooltip("The amount of time an enemy will pause after being hit.")]
     [SerializeField]
     private float stunnedTime;
+    [Tooltip("The amount of time an enemy will freeze after falling below the enemyDazeThreshold.")]
+    [SerializeField]
+    private float dazedTime;
 
 
     //Will be false when the enemy is in the middle of an attack.
@@ -55,6 +59,11 @@ public class IanTestEnemyMovement : MonoBehaviour
         return Vector3.Distance(player.transform.position, this.transform.position);
     }
 
+    public void DazeEnemy()
+    {
+        Debug.Log("Daze called");
+        StartCoroutine(DazeTimer());
+    }
 
     public void StunEnemyBriefly()
     {
@@ -74,9 +83,17 @@ public class IanTestEnemyMovement : MonoBehaviour
         player.GetComponent<Player>().TakeDamage(enemyDamage);
     }
 
-
-    public IEnumerator StunTimer()
+    private IEnumerator DazeTimer()
     {
+        Debug.Log("Daze Timer Called");
+        enemyCanMove = false;
+        yield return new WaitForSeconds(dazedTime);
+        enemyCanMove = true;
+    }
+
+    private IEnumerator StunTimer()
+    {
+        Debug.Log("Stun Timer Called");
         enemyCanMove = false;
         yield return new WaitForSeconds(stunnedTime);
         enemyCanMove = true;

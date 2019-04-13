@@ -95,10 +95,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MinDistanceNeededToSeePlayer: 6
-  enemySpeed: 5
+  enemySpeed: 4
   enemyStoppingDistance: 1
   enemyDamage: 10
   stunnedTime: 1
+  dazedTime: 10
 --- !u!58 &5073993933412519271
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -127,4 +128,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c120779ea327d8f41bf9ea0ec33ecc12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 70
+  maxHealth: 70
+  enemyDazeThreshold: 20
