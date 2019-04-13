@@ -29,9 +29,12 @@ public class PlayerAttack : MonoBehaviour
     private GameObject arrowPrefab;
     [SerializeField]
     private float arrowSpeed;
+    [SerializeField]
+    private float targetArrowLifetime, nonTargetArrowLifetime;
 
     private Animator anim;
     private Player playerScript;
+    private MovePlayer movePlayerScript;
     private GameObject arrowInstance;//gives me a ref to each arrow shot so I can pass in variables.
     private GameObject target;
 
@@ -42,6 +45,7 @@ public class PlayerAttack : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         playerScript = GetComponent<Player>();
+        movePlayerScript = GetComponent<MovePlayer>();
     }
 
     private void Update()
@@ -57,7 +61,7 @@ public class PlayerAttack : MonoBehaviour
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(punchAttackPosition.position, punchAttackRange, allEnemies);
 
                 //I'm going to have the arrow go for the closest enemy so that I can actually move the arrow object towards them
-                if (enemiesToDamage[0] != null)//if I can hit an enemy
+                try//try to shoot it at a target by getting the closest nasty boi
                 {
                     enemiesToDamage[0].GetComponent<Enemy>().TakeDamage(punchDamage);
                     target = enemiesToDamage[0].gameObject;
@@ -65,8 +69,16 @@ public class PlayerAttack : MonoBehaviour
 
                     arrowInstance = Instantiate(arrowPrefab, this.gameObject.transform.position, Quaternion.identity);//make the arrow appear
                     arrowInstance.GetComponent<MoveArrow>().arrowSpeed = arrowSpeed;//pass in variables to specific arrows
-                    arrowInstance.GetComponent<MoveArrow>().player = playerScript.gameObject;//pass in variables to specific arrows
+                    arrowInstance.GetComponent<MoveArrow>().isFacingRight = movePlayerScript.isFacingRight;//pass in variables to specific arrows
                     arrowInstance.GetComponent<MoveArrow>().target = target;
+                    arrowInstance.GetComponent<MoveArrow>().targetArrowLifetime = targetArrowLifetime;
+                }
+                catch(IndexOutOfRangeException)//if there's nothing at that index, just shoot straight
+                {
+                    arrowInstance = Instantiate(arrowPrefab, this.gameObject.transform.position, Quaternion.identity);//make the arrow appear
+                    arrowInstance.GetComponent<MoveArrow>().arrowSpeed = arrowSpeed;//pass in variables to specific arrows
+                    arrowInstance.GetComponent<MoveArrow>().isFacingRight = movePlayerScript.isFacingRight;//pass in variables to specific arrows
+                    arrowInstance.GetComponent<MoveArrow>().nonTargetArrowLifetime = nonTargetArrowLifetime;
                 }
 
             }
