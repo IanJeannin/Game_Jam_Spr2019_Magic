@@ -194,11 +194,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 628192ee806f791458798746b5d627e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalTimeBetweenAttacks: 0.5
+  originalTimeBetweenAttacks: 0.25
   attackPosition: {fileID: 1762499597}
   attackRange: 1.24
   allEnemies:
     serializedVersion: 2
     m_Bits: 512
-  bowDamage: 20
+  bowDamage: 30
   chargePerAttack: 2

@@ -15,8 +15,6 @@ public class IanTestEnemyMovement : MonoBehaviour
     [SerializeField]
     private float enemyDamage;
     [SerializeField]
-    private float startStunnedTime;
-
     private float stunnedTime;
 
 
@@ -57,6 +55,12 @@ public class IanTestEnemyMovement : MonoBehaviour
         return Vector3.Distance(player.transform.position, this.transform.position);
     }
 
+
+    public void StunEnemyBriefly()
+    {
+        StartCoroutine(StunTimer());
+    }
+
     /// <summary>
     /// Counts the time that the enemy takes to attack, to prevent that enemy from moving during that time. 
     /// </summary>
@@ -70,12 +74,11 @@ public class IanTestEnemyMovement : MonoBehaviour
         player.GetComponent<Player>().TakeDamage(enemyDamage);
     }
 
-    public IEnumerator StunEnemyBriefly()
+
+    public IEnumerator StunTimer()
     {
-        //Stores enemies speed in another variable
-        float movementSpeed = enemySpeed;
-        enemySpeed = 0;
+        enemyCanMove = false;
         yield return new WaitForSeconds(stunnedTime);
-        enemySpeed = movementSpeed;
+        enemyCanMove = true;
     }
 }
