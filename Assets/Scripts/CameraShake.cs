@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-//goes on the camera. Shakes it if we need it to
+
+
 public class CameraShake : MonoBehaviour
 {
     [SerializeField]
@@ -11,7 +12,6 @@ public class CameraShake : MonoBehaviour
     private float decreaseFactor = 1.0f;
 
     Vector3 originalPos;
-
 
     void OnEnable()
     {
@@ -28,4 +28,5 @@ public class CameraShake : MonoBehaviour
         }
         transform.localPosition = originalPos;
     }
+
 }

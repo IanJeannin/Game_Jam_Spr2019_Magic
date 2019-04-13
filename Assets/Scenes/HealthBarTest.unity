@@ -342,7 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d9fdf4d99fcdb84f8cc733bd65527b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakeAmount: 0.7
+  shakeAmount: 1.08
   decreaseFactor: 1
 --- !u!20 &519420031
 Camera:
@@ -370,7 +370,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.0759234
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -737,14 +737,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 28.710001, y: 52.1}
+    oldSize: {x: 1.7943751, y: 3.25625}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 28.710001, y: 52.1}
+  m_Size: {x: 1.7943751, y: 3.25625}
   m_EdgeRadius: 0
 --- !u!95 &1053383327
 Animator:
@@ -1621,17 +1621,17 @@ PrefabInstance:
     - target: {fileID: 6578079151452918061, guid: a8f726de74a7f894f833b8c768c8e89a,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.06
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6578079151452918061, guid: a8f726de74a7f894f833b8c768c8e89a,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.06
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6578079151452918061, guid: a8f726de74a7f894f833b8c768c8e89a,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.06
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1703588617, guid: a8f726de74a7f894f833b8c768c8e89a, type: 3}
       propertyPath: resourceBar
@@ -1667,6 +1667,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8750185550528983780, guid: cce256cdb249c614c8edfddd182b1058,
         type: 3}
+    - target: {fileID: 1703588623, guid: a8f726de74a7f894f833b8c768c8e89a, type: 3}
+      propertyPath: cameraScript
+      value: 
+      objectReference: {fileID: 519420030}
     - target: {fileID: 8599365016802667804, guid: a8f726de74a7f894f833b8c768c8e89a,
         type: 3}
       propertyPath: m_Sprite

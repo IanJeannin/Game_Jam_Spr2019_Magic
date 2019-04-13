@@ -112,7 +112,7 @@ public class PlayerAttack : MonoBehaviour
                         playerScript.AddEnergy(chargePerAttack);
                     }
 
-                    cameraScript.DoCameraShake(.2f);//HACk magic number
+                    StartCoroutine(cameraScript.DoCameraShake(.2f));//HACk magic number
 
                     ableToUnleashFinal = false;//after you do the attack, you can't do it again right away
                     playerScript.AddEnergy(-100); //Sets bar back to 0 energy, figure out how to make this not a magic number
