@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
     private float fadeOutTime;
     [SerializeField]
     private AudioClip defeatSound;
+    [SerializeField]
+    private float defeatVolume;
 
     private AudioSource audio;
     private SpriteRenderer renderer;
@@ -83,7 +85,7 @@ public class Player : MonoBehaviour
     private IEnumerator defeatCoroutine()
     {
         playerDeathStarted = true;
-        audio.PlayOneShot(defeatSound);
+        audio.PlayOneShot(defeatSound, defeatVolume);
 
         yield return new WaitForSeconds(.5f);//wait for the arrow to hit it
 
