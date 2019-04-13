@@ -1702,6 +1702,22 @@ PrefabInstance:
       propertyPath: cameraScript
       value: 
       objectReference: {fileID: 519420030}
+    - target: {fileID: 1703588623, guid: a8f726de74a7f894f833b8c768c8e89a, type: 3}
+      propertyPath: enemyHurtSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 006ba7b9eacb30f4f84f4f48b9064c12, type: 3}
+    - target: {fileID: 1703588623, guid: a8f726de74a7f894f833b8c768c8e89a, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c762d85d5440ad246b3f2bebf0d501ad, type: 3}
+    - target: {fileID: 1703588623, guid: a8f726de74a7f894f833b8c768c8e89a, type: 3}
+      propertyPath: shootVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1703588623, guid: a8f726de74a7f894f833b8c768c8e89a, type: 3}
+      propertyPath: enemyHurtVolume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8599365016802667804, guid: a8f726de74a7f894f833b8c768c8e89a,
         type: 3}
       propertyPath: m_Sprite

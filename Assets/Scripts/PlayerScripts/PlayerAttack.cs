@@ -31,12 +31,16 @@ public class PlayerAttack : MonoBehaviour
     private float arrowSpeed;
     [SerializeField]
     private float targetArrowLifetime, nonTargetArrowLifetime;
-
     [SerializeField]
     private ParticleSystem hurtParticles;
-
     [SerializeField]
     private CameraShake cameraScript;
+
+    [Header("Sound Stuff")]
+    [SerializeField]
+    private AudioClip shootSound, enemyHurtSound;
+    [SerializeField]
+    private float shootVolume, enemyHurtVolume;
 
     private Animator anim;
     private Player playerScript;
@@ -44,6 +48,7 @@ public class PlayerAttack : MonoBehaviour
     private GameObject arrowInstance;//gives me a ref to each arrow shot so I can pass in variables.
     private GameObject target;
     private MoveArrow moveArrow;
+    private AudioSource audio;
 
     private bool ableToUnleashFinal = false;
     private float timeBetweenAttacks;
@@ -53,6 +58,7 @@ public class PlayerAttack : MonoBehaviour
         anim = GetComponent<Animator>();
         playerScript = GetComponent<Player>();
         movePlayerScript = GetComponent<MovePlayer>();
+        audio = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -73,11 +79,12 @@ public class PlayerAttack : MonoBehaviour
                 {
                     enemiesToDamage[0].GetComponent<Enemy>().TakeDamage(punchDamage);
 
-                    //AUDIO add enemy get hit sound             
+                    audio.PlayOneShot(shootSound, shootVolume);            
                     target = enemiesToDamage[0].gameObject;
 
                     if(!target.GetComponent<Enemy>().deathCoroutineStarted)//if the enemy isn't already dying
                     Instantiate(hurtParticles, target.transform.position, Quaternion.identity);//put some blood particles on the enemy
+                    audio.PlayOneShot(enemyHurtSound, enemyHurtVolume);
 
                     playerScript.AddEnergy(chargePerAttack);
 
