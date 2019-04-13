@@ -11,10 +11,17 @@ public class Player : MonoBehaviour
     private float maxCharge;
     [SerializeField]
     private GameObject resourceBar;
+    [SerializeField]
+    private GameObject finalUnlockedMarkers;
+    [SerializeField]
+    private float fadeOutTime;
 
     
     private float currentHealth;
     private static float currentCharge;
+    private float unlockedMarkersAlpha;
+    //Prevents final attack markers from going off repeatedly
+    private bool markerHasNotGoneOff=true;
     
 
     private void Awake()
@@ -22,6 +29,7 @@ public class Player : MonoBehaviour
         currentHealth = maxHealth;
         currentCharge = 0;
         resourceBar.GetComponent<ResourceBars>().SetEnergy(currentCharge);
+        finalUnlockedMarkers.SetActive(false);
     }
 
     public void TakeDamage(float damageAmount)
@@ -39,6 +47,12 @@ public class Player : MonoBehaviour
         {
             currentCharge = 100;
             gameObject.GetComponent<PlayerAttack>().UnlockFinalAttack();
+            if(markerHasNotGoneOff)
+            {
+                finalUnlockedMarkers.SetActive(true);
+                markerHasNotGoneOff = false;
+                StartCoroutine(GetRidOfFinalMarkers());
+            }
         }
         resourceBar.GetComponent<ResourceBars>().SetEnergy(currentCharge/100);
     }
@@ -52,4 +66,9 @@ public class Player : MonoBehaviour
         }
     }
 
+    private IEnumerator GetRidOfFinalMarkers()
+    {
+        yield return new WaitForSeconds(fadeOutTime);
+        finalUnlockedMarkers.SetActive(false);
+    }
 }

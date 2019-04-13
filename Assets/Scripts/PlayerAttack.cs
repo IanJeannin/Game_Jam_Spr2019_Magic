@@ -53,6 +53,8 @@ public class PlayerAttack : MonoBehaviour
                         enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(finalDamage);
                         gameObject.GetComponent<Player>().AddEnergy(chargePerAttack);
                     }
+                    ableToUnleashFinal = false;
+                    gameObject.GetComponent<Player>().AddEnergy(-100); //Sets bar back to 0 energy, figure out how to make this not a magic number
                 }
             }
         }
