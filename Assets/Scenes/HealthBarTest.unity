@@ -1137,10 +1137,6 @@ PrefabInstance:
       propertyPath: resourceBar
       value: 
       objectReference: {fileID: 593663988}
-    - target: {fileID: 1703588623, guid: a8f726de74a7f894f833b8c768c8e89a, type: 3}
-      propertyPath: attackRange
-      value: 4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8f726de74a7f894f833b8c768c8e89a, type: 3}
 --- !u!1001 &8518567135773573361

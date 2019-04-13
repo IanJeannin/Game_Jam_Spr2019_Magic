@@ -7,15 +7,23 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     private float originalTimeBetweenAttacks;
     [SerializeField]
-    private Transform attackPosition;
+    private Transform punchAttackPosition;
     [SerializeField]
-    private float attackRange;
+    private float punchAttackRange;
     [SerializeField]
     private LayerMask allEnemies;
     [SerializeField]
-    private float bowDamage;
+    private float punchDamage;
     [SerializeField]
     private float chargePerAttack;
+    [SerializeField]
+    private Transform finalAttackPosition;
+    [SerializeField]
+    private float finalAttackRange;
+    [SerializeField]
+    private float finalDamage;
+
+    private bool ableToUnleashFinal = false;
 
     private float timeBetweenAttacks;
 
@@ -27,10 +35,20 @@ public class PlayerAttack : MonoBehaviour
             if(Input.GetButton("BowAttack"))
             {
                 timeBetweenAttacks = originalTimeBetweenAttacks;
-                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPosition.position,attackRange, allEnemies);
+                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(punchAttackPosition.position,punchAttackRange, allEnemies);
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
-                    enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(bowDamage);
+                    enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(punchDamage);
+                    gameObject.GetComponent<Player>().AddEnergy(chargePerAttack);
+                }
+            }
+            else if(Input.GetButton("FinalAttack"))
+            {
+                timeBetweenAttacks = originalTimeBetweenAttacks;
+                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(finalAttackPosition.position, finalAttackRange, allEnemies);
+                for (int i = 0; i < enemiesToDamage.Length; i++)
+                {
+                    enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(finalDamage);
                     gameObject.GetComponent<Player>().AddEnergy(chargePerAttack);
                 }
             }
@@ -44,6 +62,6 @@ public class PlayerAttack : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackPosition.position, attackRange);
+        Gizmos.DrawWireSphere(punchAttackPosition.position, punchAttackRange);
     }
 }
