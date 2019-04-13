@@ -72,10 +72,13 @@ public class PlayerAttack : MonoBehaviour
                 try//try to shoot it at a target by getting the closest nasty boi
                 {
                     enemiesToDamage[0].GetComponent<Enemy>().TakeDamage(punchDamage);
-                    Instantiate(hurtParticles, enemiesToDamage[0].transform.position, Quaternion.identity);//put some blood particles on the enemy
 
                     //AUDIO add enemy get hit sound             
                     target = enemiesToDamage[0].gameObject;
+
+                    if(!target.GetComponent<Enemy>().deathCoroutineStarted)//if the enemy isn't already dying
+                    Instantiate(hurtParticles, target.transform.position, Quaternion.identity);//put some blood particles on the enemy
+
                     playerScript.AddEnergy(chargePerAttack);
 
                     arrowInstance = Instantiate(arrowPrefab, this.gameObject.transform.position, Quaternion.identity);//make the arrow appear
