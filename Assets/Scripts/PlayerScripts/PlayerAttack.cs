@@ -57,6 +57,7 @@ public class PlayerAttack : MonoBehaviour
     private AudioSource audio;
 
     private bool ableToUnleashFinal = false;
+    private bool coroutineStarted = false;
     private float timeBetweenAttacks;
 
     private void Start()
@@ -73,47 +74,11 @@ public class PlayerAttack : MonoBehaviour
         if(timeBetweenAttacks <= 0)
         {
             if (Input.GetButtonDown("BowAttack"))
-            {
-                //AUDIO SHOOTING SOUND
-                anim.SetTrigger("ShootBow");//get the animator doing that attack
-                audio.PlayOneShot(shootSound, shootVolume);
-
-                timeBetweenAttacks = originalTimeBetweenAttacks;//reset time
-                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(punchAttackPosition.position, punchAttackRange, allEnemies);
-
-                //I'm going to have the arrow go for the closest enemy so that I can actually move the arrow object towards them
-                try//try to shoot it at a target by getting the closest nasty boi
-                {
-                    enemiesToDamage[0].GetComponent<Enemy>().TakeDamage(punchDamage);
-
-                    target = enemiesToDamage[0].gameObject;
-
-                    if (!target.GetComponent<Enemy>().deathCoroutineStarted)//if the enemy isn't already dying
-                        Instantiate(hurtParticles, target.transform.position, Quaternion.identity);//put some blood particles on the enemy
-                    audio.PlayOneShot(enemyHurtSound, enemyHurtVolume);
-
-                    playerScript.AddEnergy(chargePerAttack);
-
-                    arrowInstance = Instantiate(arrowPrefab, this.gameObject.transform.position, Quaternion.identity);//make the arrow appear
-                    moveArrow = arrowInstance.GetComponent<MoveArrow>();
-                    //SET ARROW VALUES
-                    moveArrow.arrowSpeed = arrowSpeed;//pass in variables to specific arrows
-                    moveArrow.isFacingRight = movePlayerScript.isFacingRight;//pass in variables to specific arrows
-                    moveArrow.target = target;
-                    moveArrow.targetArrowLifetime = targetArrowLifetime;
-                    moveArrow.damage = punchDamage;//so the arrow knows how much damage
-                }
-                catch (IndexOutOfRangeException)//if there's nothing at that index, just shoot straight
-                {
-                    arrowInstance = Instantiate(arrowPrefab, this.gameObject.transform.position, Quaternion.identity);//make the arrow appear
-                    moveArrow = arrowInstance.GetComponent<MoveArrow>();
-                    //SET ARROW VALUES
-                    moveArrow.arrowSpeed = arrowSpeed;//pass in variables to specific arrows
-                    moveArrow.isFacingRight = movePlayerScript.isFacingRight;//pass in variables to specific arrows
-                    moveArrow.nonTargetArrowLifetime = nonTargetArrowLifetime;
-                }
-
+            {             
+                if(!coroutineStarted)
+                StartCoroutine(FireBow());
             }
+
             else if (Input.GetButtonDown("FinalAttack"))
             {
                 if (ableToUnleashFinal)
@@ -153,6 +118,50 @@ public class PlayerAttack : MonoBehaviour
     public void UnlockFinalAttack()
     {
         ableToUnleashFinal = true;
+    }
+
+    private IEnumerator FireBow()
+    {
+        coroutineStarted = true;
+        anim.SetTrigger("ShootBow");//get the animator doing that attack
+
+        yield return new WaitForSeconds(.3f);//give it a bit of delay so we can see the player shoot first
+        audio.PlayOneShot(shootSound, shootVolume);
+
+        try//try to shoot it at a target by getting the closest nasty boi
+        {
+            timeBetweenAttacks = originalTimeBetweenAttacks;//reset time
+            Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(punchAttackPosition.position, punchAttackRange, allEnemies);
+
+            enemiesToDamage[0].GetComponent<Enemy>().TakeDamage(punchDamage);
+
+            target = enemiesToDamage[0].gameObject;
+
+            if (!target.GetComponent<Enemy>().deathCoroutineStarted)//if the enemy isn't already dying
+                Instantiate(hurtParticles, target.transform.position, Quaternion.identity);//put some blood particles on the enemy
+            audio.PlayOneShot(enemyHurtSound, enemyHurtVolume);
+
+            playerScript.AddEnergy(chargePerAttack);
+
+            arrowInstance = Instantiate(arrowPrefab, this.gameObject.transform.position, Quaternion.identity);//make the arrow appear
+            moveArrow = arrowInstance.GetComponent<MoveArrow>();
+            //SET ARROW VALUES
+            moveArrow.arrowSpeed = arrowSpeed;//pass in variables to specific arrows
+            moveArrow.isFacingRight = movePlayerScript.isFacingRight;//pass in variables to specific arrows
+            moveArrow.target = target;
+            moveArrow.targetArrowLifetime = targetArrowLifetime;
+            moveArrow.damage = punchDamage;//so the arrow knows how much damage
+        }
+        catch (IndexOutOfRangeException)//if there's nothing at that index, just shoot straight
+        {
+            arrowInstance = Instantiate(arrowPrefab, this.gameObject.transform.position, Quaternion.identity);//make the arrow appear
+            moveArrow = arrowInstance.GetComponent<MoveArrow>();
+            //SET ARROW VALUES
+            moveArrow.arrowSpeed = arrowSpeed;//pass in variables to specific arrows
+            moveArrow.isFacingRight = movePlayerScript.isFacingRight;//pass in variables to specific arrows
+            moveArrow.nonTargetArrowLifetime = nonTargetArrowLifetime;
+        }
+        coroutineStarted = false;
     }
 
     void OnDrawGizmosSelected()
