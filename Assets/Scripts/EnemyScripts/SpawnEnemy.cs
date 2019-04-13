@@ -11,8 +11,8 @@ public class SpawnEnemy : MonoBehaviour
     private float minTimeBetweenSpawn, maxTimeBetweenSpawn;
 
     [SerializeField]
-    private GameObject enemyPrefab;
-
+    private GameObject[] enemyPrefabs;
+       
     private GameObject enemyInstance;
 
     // Start is called before the first frame update
@@ -31,12 +31,17 @@ public class SpawnEnemy : MonoBehaviour
         for (; ; )
         {
             yield return new WaitForSeconds(randomTimeBetweenSpawn());//wait
-            enemyInstance = Instantiate(enemyPrefab, GetRandomPoint(), Quaternion.identity);//spawn the enemy
+            enemyInstance = Instantiate(randomEnemy(), GetRandomPoint(), Quaternion.identity);//spawn the enemy
         }
     }
 
     private float randomTimeBetweenSpawn()
     {
         return Random.Range(minTimeBetweenSpawn, maxTimeBetweenSpawn);
+    }
+
+    private GameObject randomEnemy()
+    {
+        return enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
     }
 }
