@@ -191,6 +191,18 @@ PrefabInstance:
       objectReference: {fileID: 429706365}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70d128f21cbd4394392340fd8a586059, type: 3}
+--- !u!114 &377544481 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7950894361083706293, guid: 70d128f21cbd4394392340fd8a586059,
+    type: 3}
+  m_PrefabInstance: {fileID: 377544480}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aad7686a65ba34943b5eeb841487d073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &380447823
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,7 +597,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 377544481}
         m_MethodName: LoadMainMenu
         m_Mode: 1
         m_Arguments:
@@ -652,7 +664,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 377544481}
           m_MethodName: PlayHoverSound
           m_Mode: 1
           m_Arguments:
@@ -965,7 +977,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7950894361083706293, guid: 70d128f21cbd4394392340fd8a586059,
+          type: 3}
         m_MethodName: ExitGame
         m_Mode: 1
         m_Arguments:
@@ -1032,7 +1045,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 377544481}
           m_MethodName: PlayHoverSound
           m_Mode: 1
           m_Arguments:
