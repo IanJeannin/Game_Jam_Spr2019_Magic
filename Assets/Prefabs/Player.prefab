@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  startingArrowAttackPosition: {fileID: 0}
   isFacingRight: 0
 --- !u!114 &1703588617
 MonoBehaviour:
@@ -183,7 +184,7 @@ MonoBehaviour:
   allEnemies:
     serializedVersion: 2
     m_Bits: 512
-  arrowDamage: 20
+  arrowDamage: 100
   chargePerAttack: 5
   finalAttackPosition: {fileID: 7176163365978396929}
   finalAttackRange: 10

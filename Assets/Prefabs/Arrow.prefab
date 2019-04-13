@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7200042581976331407}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: -1.382, z: 0.08277529}
+  m_LocalPosition: {x: -0.5, y: -1.382, z: 0}
   m_LocalScale: {x: 1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -98,6 +98,10 @@ MonoBehaviour:
   targetArrowLifetime: 0
   nonTargetArrowLifetime: 0
   isFacingRight: 0
+  damage: 0
+  allEnemies:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!61 &3118974153854518079
 BoxCollider2D:
   m_ObjectHideFlags: 0

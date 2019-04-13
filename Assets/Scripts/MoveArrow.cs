@@ -19,6 +19,8 @@ public class MoveArrow : MonoBehaviour
     [HideInInspector]
     public float damage;
     private float elapsedTime;
+    [SerializeField]
+    private LayerMask allEnemies;
 
     private SpriteRenderer renderer;
         
@@ -61,10 +63,26 @@ public class MoveArrow : MonoBehaviour
     {
         if (target != null)//if we have a target, move towards the target
             transform.position = Vector3.MoveTowards(this.transform.position, target.transform.position, arrowSpeed * Time.deltaTime);//move directly towards the player
-        else if (isFacingRight)//else just go right if we're facing right
-            transform.Translate(Vector3.right * arrowSpeed * Time.deltaTime);
-        else if (!isFacingRight)//or if we're facing left, go left
-            transform.Translate(Vector3.left * arrowSpeed * Time.deltaTime);
+        else
+        {
+            if (isFacingRight)//else just go right if we're facing right
+            {
+                transform.Translate(Vector3.right * arrowSpeed * Time.deltaTime);
+
+            }
+            else if (!isFacingRight)//or if we're facing left, go left
+                transform.Translate(Vector3.left * arrowSpeed * Time.deltaTime);
+
+            Collider2D[] enemy = new Collider2D[10];
+            ContactFilter2D contactFilter = new ContactFilter2D();
+            contactFilter.SetLayerMask(allEnemies);
+            gameObject.GetComponent<BoxCollider2D>().OverlapCollider(contactFilter, enemy);
+            if (enemy[0] != null)
+            {
+                Destroy(gameObject);
+                enemy[0].gameObject.GetComponent<Enemy>().TakeDamage(damage);
+            }
+        }
     }
 
     private IEnumerator FadeArrowOut()
