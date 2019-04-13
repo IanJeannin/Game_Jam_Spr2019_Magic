@@ -33,6 +33,7 @@ public class Enemy : MonoBehaviour
     {
         //AUDIO enemy is hurt sound
         anim.SetTrigger("Hurt");//tell the animator to do the hurt anim
+
         health -= damage;
         Debug.Log($"Enemy Health: { health}");
 
