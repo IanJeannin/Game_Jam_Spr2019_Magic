@@ -197,12 +197,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalTimeBetweenAttacks: 0.25
   punchAttackPosition: {fileID: 1762499597}
-  punchAttackRange: 0.7
+  punchAttackRange: 4.99
   allEnemies:
     serializedVersion: 2
     m_Bits: 512
   punchDamage: 30
-  chargePerAttack: 2
+  chargePerAttack: 80
   finalAttackPosition: {fileID: 7176163365978396929}
   finalAttackRange: 10
   finalDamage: 75

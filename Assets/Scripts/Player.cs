@@ -34,6 +34,12 @@ public class Player : MonoBehaviour
     public void AddEnergy(float chargeAdded)
     {
         currentCharge += chargeAdded;
+        //Prevents player going over max charge
+        if (currentCharge>=100)
+        {
+            currentCharge = 100;
+            gameObject.GetComponent<PlayerAttack>().UnlockFinalAttack();
+        }
         resourceBar.GetComponent<ResourceBars>().SetEnergy(currentCharge/100);
     }
 

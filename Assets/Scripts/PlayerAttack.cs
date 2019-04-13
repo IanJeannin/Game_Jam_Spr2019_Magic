@@ -44,12 +44,15 @@ public class PlayerAttack : MonoBehaviour
             }
             else if(Input.GetButton("FinalAttack"))
             {
-                timeBetweenAttacks = originalTimeBetweenAttacks;
-                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(finalAttackPosition.position, finalAttackRange, allEnemies);
-                for (int i = 0; i < enemiesToDamage.Length; i++)
+                if (ableToUnleashFinal)
                 {
-                    enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(finalDamage);
-                    gameObject.GetComponent<Player>().AddEnergy(chargePerAttack);
+                    timeBetweenAttacks = originalTimeBetweenAttacks;
+                    Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(finalAttackPosition.position, finalAttackRange, allEnemies);
+                    for (int i = 0; i < enemiesToDamage.Length; i++)
+                    {
+                        enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(finalDamage);
+                        gameObject.GetComponent<Player>().AddEnergy(chargePerAttack);
+                    }
                 }
             }
         }
@@ -59,9 +62,16 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    public void UnlockFinalAttack()
+    {
+        ableToUnleashFinal = true;
+    }
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(punchAttackPosition.position, punchAttackRange);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(finalAttackPosition.position, finalAttackRange);
     }
 }
