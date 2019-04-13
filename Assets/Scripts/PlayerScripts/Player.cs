@@ -15,21 +15,28 @@ public class Player : MonoBehaviour
     private GameObject finalUnlockedMarkers;
     [SerializeField]
     private float fadeOutTime;
+    [SerializeField]
+    private AudioClip defeatSound;
 
-    
+    private AudioSource audio;
+    private SpriteRenderer renderer;
+
     private float currentHealth;
     private static float currentCharge;
     private float unlockedMarkersAlpha;
     //Prevents final attack markers from going off repeatedly
     private bool markerHasNotGoneOff=true;
+    private bool playerDeathStarted = false;
     
 
-    private void Awake()
+    private void Start()
     {
         currentHealth = maxHealth;
         currentCharge = 0;
         resourceBar.SetEnergy(currentCharge);
         finalUnlockedMarkers.SetActive(false);
+        audio = GetComponent<AudioSource>();
+        renderer = GetComponent<SpriteRenderer>();
     }
 
     public void TakeDamage(float damageAmount)
@@ -62,7 +69,8 @@ public class Player : MonoBehaviour
     {
         if(currentHealth<=0)
         {
-            SceneManager.LoadScene("DefeatScene");
+            if (!playerDeathStarted)
+                StartCoroutine(defeatCoroutine());
         }
     }
 
@@ -70,5 +78,21 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(fadeOutTime);
         finalUnlockedMarkers.SetActive(false);
+    }
+
+    private IEnumerator defeatCoroutine()
+    {
+        playerDeathStarted = true;
+        audio.PlayOneShot(defeatSound);
+
+        yield return new WaitForSeconds(.5f);//wait for the arrow to hit it
+
+        for (float f = 1f; f > 0; f -= .1f)
+        {
+            renderer.color = new Color(1, 1, 1, f);
+            yield return new WaitForSeconds(.1f);
+        }
+
+        SceneManager.LoadScene("DefeatScene");
     }
 }

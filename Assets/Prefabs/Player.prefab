@@ -186,6 +186,7 @@ MonoBehaviour:
   resourceBar: {fileID: 0}
   finalUnlockedMarkers: {fileID: 0}
   fadeOutTime: 2
+  defeatSound: {fileID: 8300000, guid: 9d1ba1b53e2d3b94faa2fe8b32724fac, type: 3}
 --- !u!114 &1703588623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,6 +214,8 @@ MonoBehaviour:
   arrowSpeed: 0
   targetArrowLifetime: 0
   nonTargetArrowLifetime: 0
+  hurtParticles: {fileID: 0}
+  cameraScript: {fileID: 0}
 --- !u!1 &1780817891536477324
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 05c739a1f40855945b7361c957659156
   - enabled: 1
+    path: Assets/Scenes/HealthBarTest.unity
+    guid: d789c989395f0f341be5391debdae013
+  - enabled: 1
     path: Assets/Scenes/IanTestScene.unity
     guid: 998a1a4acb458e740a2f19aad95a3dda
   - enabled: 1

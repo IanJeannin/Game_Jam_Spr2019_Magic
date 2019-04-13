@@ -658,6 +658,10 @@ MonoBehaviour:
   gameScene: IanTestScene
   creditsScene: Credits
   mainMenu: MainMenu
+  hoverVolume: 0
+  clickVolume: 0
+  hover: {fileID: 0}
+  click: {fileID: 0}
 --- !u!4 &996791291
 Transform:
   m_ObjectHideFlags: 0
