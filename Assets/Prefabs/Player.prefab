@@ -164,6 +164,7 @@ MonoBehaviour:
   fadeOutTime: 2
   defeatSound: {fileID: 8300000, guid: 9d1ba1b53e2d3b94faa2fe8b32724fac, type: 3}
   defeatVolume: 0.4
+  playerHurtSound: {fileID: 0}
 --- !u!114 &1703588623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,6 +200,9 @@ MonoBehaviour:
   enemyHurtSound: {fileID: 0}
   shootVolume: 0
   enemyHurtVolume: 0
+  timeBeforeExplosionForFinalAttack: 0
+  startOfFinalAttack: {fileID: 0}
+  finalAttackExplosion: {fileID: 0}
 --- !u!82 &1053383321
 AudioSource:
   m_ObjectHideFlags: 0
@@ -209,8 +213,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: b75b42c1d27260849a8df95ca8d9effd, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -331,7 +335,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.48, y: 3.9010003}
+    oldSize: {x: 2.0666666, y: 3.2508333}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

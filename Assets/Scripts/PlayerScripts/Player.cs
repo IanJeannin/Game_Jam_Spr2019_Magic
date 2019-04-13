@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     private AudioClip defeatSound;
     [SerializeField]
     private float defeatVolume;
+    [SerializeField]
+    private AudioClip playerHurtSound;
 
     private AudioSource audio;
     private SpriteRenderer renderer;
@@ -43,6 +45,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
+        audio.PlayOneShot(playerHurtSound);
         currentHealth -= damageAmount;
         resourceBar.SetHealth(currentHealth / 100);
     }
