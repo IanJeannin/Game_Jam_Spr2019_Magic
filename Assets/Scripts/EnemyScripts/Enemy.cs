@@ -48,30 +48,13 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if(health<=0)
+        if (health <= 0)
         {
             //AUDIO ENEMY DEATH sound
-            if(!deathCoroutineStarted)
-            StartCoroutine(FadeOutDeath());
+            if (!deathCoroutineStarted)
+                StartCoroutine(FadeOutDeath());
         }
     }
-
-    //void DoEnemyKnockback()
-    //{
-    //    if (isOnLeftSide)
-    //    {
-    //        rigidbody.AddForce(-Vector2.right * knockbackForceHorizontal, ForceMode2D.Impulse);
-
-    //    }
-
-    //    else if (!isOnLeftSide)
-    //    {
-    //        rigidbody.AddForce(Vector2.right * knockbackForceHorizontal, ForceMode2D.Impulse);
-    //    }
-    //    //AUDIO normal fish hit sound
-    //    rigidbody.AddForce(Vector2.up * knockbackForceUp, ForceMode2D.Impulse);
-    //}
-
 
     private IEnumerator FadeOutDeath()
     {

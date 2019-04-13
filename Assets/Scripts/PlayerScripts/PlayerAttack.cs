@@ -35,6 +35,9 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     private ParticleSystem hurtParticles;
 
+    [SerializeField]
+    private CameraShake cameraScript;
+
     private Animator anim;
     private Player playerScript;
     private MovePlayer movePlayerScript;
@@ -108,6 +111,8 @@ public class PlayerAttack : MonoBehaviour
                         enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(finalDamage);
                         playerScript.AddEnergy(chargePerAttack);
                     }
+
+                    cameraScript.DoCameraShake(.2f);//HACk magic number
 
                     ableToUnleashFinal = false;//after you do the attack, you can't do it again right away
                     playerScript.AddEnergy(-100); //Sets bar back to 0 energy, figure out how to make this not a magic number
