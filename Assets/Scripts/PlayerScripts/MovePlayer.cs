@@ -7,7 +7,11 @@ public class MovePlayer : MonoBehaviour
     [SerializeField]
     private float speed;
 
+    [HideInInspector]
+    public bool isFacingRight;//tells you which way the player is facing to be referenced in attack and move stuff
+
     private Animator anim;
+    private SpriteRenderer spriteRenderer;
 
     private string horizontalName, verticalName;
     private float horizontalValue, verticalValue;
@@ -15,6 +19,7 @@ public class MovePlayer : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         horizontalName = "Horizontal";
         verticalName = "Vertical";
@@ -28,6 +33,7 @@ public class MovePlayer : MonoBehaviour
     {
         GetInput();
         SetAnimBasedOnInput();//tells the animator whether the player is moving or not
+        UpdatePlayerDirection();
     }
 
     void SetAnimBasedOnInput()
@@ -52,11 +58,13 @@ public class MovePlayer : MonoBehaviour
     {
         if (horizontalValue > 0)
         {
-            transform.localScale = new Vector3(1f, 1f, 1f);//facing right
+            spriteRenderer.flipX = false;
+            isFacingRight = true;
         }
         if (horizontalValue < 0)
         {
-            transform.localScale = new Vector3(-1f, 1f, 1f);//facing left
+            spriteRenderer.flipX = true;
+            isFacingRight = false;
         }
     }
 }
