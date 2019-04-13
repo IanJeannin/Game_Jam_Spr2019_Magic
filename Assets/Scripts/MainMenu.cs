@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class MainMenu : MonoBehaviour
     private string creditsScene;
     [SerializeField]
     private string mainMenu;
+
+    [SerializeField]
+    private GameObject instructionsPanel;
 
     //AUDIO
     [SerializeField]
@@ -23,24 +27,28 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         audio = GetComponent<AudioSource>();
+        instructionsPanel.SetActive(false);
     }
     public void loadGameScene()
     {
-        //AUDIO button click sound
         audio.PlayOneShot(click, clickVolume);
         SceneManager.LoadScene(gameScene);
     }
 
+    public void clickPlay()
+    {
+        audio.PlayOneShot(click, clickVolume);
+        instructionsPanel.SetActive(true);
+    }
+
     public void goToCredits()
     {
-        //AUDIO button click sound
         audio.PlayOneShot(click, clickVolume);
         SceneManager.LoadScene(creditsScene);
     }
 
     public void backToMenu()
     {
-        //AUDIO button click sound
         audio.PlayOneShot(click, clickVolume);
         SceneManager.LoadScene(mainMenu);
     }
