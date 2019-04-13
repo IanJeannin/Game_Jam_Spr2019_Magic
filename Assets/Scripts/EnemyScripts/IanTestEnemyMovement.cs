@@ -84,6 +84,7 @@ public class IanTestEnemyMovement : MonoBehaviour
         anim.SetTrigger("Attack");//let the animator know the enemy is attacking
         yield return new WaitForSeconds(enemyAttackAnimationLength);
         enemyCanMove = true;
+        //AUDIO player hurt sound
         player.GetComponent<Player>().TakeDamage(enemyDamage);
     }
 

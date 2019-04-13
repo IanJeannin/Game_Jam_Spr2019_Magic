@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        //AUDIO enemy is hurt sound
         anim.SetTrigger("Hurt");//tell the animator to do the hurt anim
 
         health -= damage;
@@ -42,7 +43,8 @@ public class Enemy : MonoBehaviour
     {
         if(health<=0)
         {
-            Destroy(gameObject);
+            //AUDIO ENEMY DEATH sound
+            Destroy(gameObject);//maybe move this to a coroutine so we can play a death animation or hurt frame
         }
     }
 }

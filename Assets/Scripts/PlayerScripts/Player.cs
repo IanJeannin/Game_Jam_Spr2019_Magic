@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
         //Prevents player going over max charge
         if (currentCharge>=100)
         {
+            //AUDIO playe final attack ready sound cue
             currentCharge = 100;
             gameObject.GetComponent<PlayerAttack>().UnlockFinalAttack();
             if(markerHasNotGoneOff)

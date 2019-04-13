@@ -14,16 +14,19 @@ public class MainMenu : MonoBehaviour
 
     public void loadGameScene()
     {
+        //AUDIO button click sound
         SceneManager.LoadScene(gameScene);
     }
 
     public void goToCredits()
     {
+        //AUDIO button click sound
         SceneManager.LoadScene(creditsScene);
     }
 
     public void backToMenu()
     {
+        //AUDIO button click sound
         SceneManager.LoadScene(mainMenu);
     }
 

@@ -37,6 +37,7 @@ public class PlayerAttack : MonoBehaviour
     private MovePlayer movePlayerScript;
     private GameObject arrowInstance;//gives me a ref to each arrow shot so I can pass in variables.
     private GameObject target;
+    private MoveArrow moveArrow;
 
     private bool ableToUnleashFinal = false;
     private float timeBetweenAttacks;
@@ -55,6 +56,7 @@ public class PlayerAttack : MonoBehaviour
         {
             if (Input.GetButton("BowAttack"))
             {
+                //AUDIO SHOOTING SOUND
                 anim.SetTrigger("ShootBow");//get the animator doing that attack
 
                 timeBetweenAttacks = originalTimeBetweenAttacks;//reset time
@@ -64,21 +66,26 @@ public class PlayerAttack : MonoBehaviour
                 try//try to shoot it at a target by getting the closest nasty boi
                 {
                     enemiesToDamage[0].GetComponent<Enemy>().TakeDamage(punchDamage);
+                    //AUDIO add enemy get hit sound
                     target = enemiesToDamage[0].gameObject;
                     playerScript.AddEnergy(chargePerAttack);
 
                     arrowInstance = Instantiate(arrowPrefab, this.gameObject.transform.position, Quaternion.identity);//make the arrow appear
-                    arrowInstance.GetComponent<MoveArrow>().arrowSpeed = arrowSpeed;//pass in variables to specific arrows
-                    arrowInstance.GetComponent<MoveArrow>().isFacingRight = movePlayerScript.isFacingRight;//pass in variables to specific arrows
-                    arrowInstance.GetComponent<MoveArrow>().target = target;
-                    arrowInstance.GetComponent<MoveArrow>().targetArrowLifetime = targetArrowLifetime;
+                    moveArrow = arrowInstance.GetComponent<MoveArrow>();
+                    //SET ARROW VALUES
+                    moveArrow.arrowSpeed = arrowSpeed;//pass in variables to specific arrows
+                    moveArrow.isFacingRight = movePlayerScript.isFacingRight;//pass in variables to specific arrows
+                    moveArrow.target = target;
+                    moveArrow.targetArrowLifetime = targetArrowLifetime;
                 }
                 catch(IndexOutOfRangeException)//if there's nothing at that index, just shoot straight
                 {
                     arrowInstance = Instantiate(arrowPrefab, this.gameObject.transform.position, Quaternion.identity);//make the arrow appear
-                    arrowInstance.GetComponent<MoveArrow>().arrowSpeed = arrowSpeed;//pass in variables to specific arrows
-                    arrowInstance.GetComponent<MoveArrow>().isFacingRight = movePlayerScript.isFacingRight;//pass in variables to specific arrows
-                    arrowInstance.GetComponent<MoveArrow>().nonTargetArrowLifetime = nonTargetArrowLifetime;
+                    moveArrow = arrowInstance.GetComponent<MoveArrow>();
+                    //SET ARROW VALUES
+                    moveArrow.arrowSpeed = arrowSpeed;//pass in variables to specific arrows
+                    moveArrow.isFacingRight = movePlayerScript.isFacingRight;//pass in variables to specific arrows
+                    moveArrow.nonTargetArrowLifetime = nonTargetArrowLifetime;
                 }
 
             }
@@ -86,6 +93,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 if (ableToUnleashFinal)
                 {
+                    //AUDIO do final attack sound
                     timeBetweenAttacks = originalTimeBetweenAttacks;//sreset time
                     Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(finalAttackPosition.position, finalAttackRange, allEnemies);
 
